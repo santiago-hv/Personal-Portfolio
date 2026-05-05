@@ -1,24 +1,17 @@
-import "./app.css";
-import { Header } from "./components/Header";
-import { Hero } from "./components/Hero";
-import { Skills } from "./components/Skills";
-import { Projects } from "./components/Projects";
-import { Contact } from "./components/Contact";
-import { Footer } from "./components/Footer";
-
+import { useState } from 'react'
+import './app.css'
+import {Header} from './components/Header'
+import { PrincipalInfo } from './components/principalInfo'
 function App() {
-	return (
-		<div className="appShell">
-			<Header />
-			<main>
-				<Hero />
-				<Projects />
-				<Skills />
-				<Contact />
-			</main>
-			<Footer />
-		</div>
-	);
+  return (
+    <>
+      <Header/>
+      <body>
+        <PrincipalInfo/>
+      </body>
+    </>
+    
+  )
 }
 
-export default App;
+export default App
