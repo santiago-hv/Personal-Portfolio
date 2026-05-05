@@ -8,8 +8,11 @@ function App() {
 			<Header />
 			<main>
 				<Hero />
+				<br />
 				<Skills />
+				<br />
 				<Projects />
+				<br />
 				<Contact />
 			</main>
 			<Footer />

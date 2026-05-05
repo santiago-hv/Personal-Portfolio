@@ -2,7 +2,7 @@ export function Footer() {
 	return (
 		<footer className="siteFooter">
 			<div>
-				<strong>Santiago Villegas</strong>
+				<strong>Santiago Huapalla Villegas</strong>
 				<p>© 2026 Visual portfolio. Built with React.</p>
 			</div>
 			<div className="footerLinks">

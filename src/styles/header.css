@@ -1,6 +1,6 @@
 .siteHeader {
 	width: 100%;
-	padding: 16px max(20px, calc((100vw - 1240px) / 2 + 20px));
+	padding:15px 30px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -11,6 +11,16 @@
 	background: rgba(11, 10, 19, 0.88);
 	backdrop-filter: blur(18px);
 	border-bottom: 1px solid rgba(211, 194, 255, 0.08);
+}
+
+html {
+	scroll-behavior: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
 }
 
 .brand {
@@ -31,6 +41,14 @@
 	color: var(--accent);
 	font-size: 0.62rem;
 	font-weight: 800;
+	transition:
+		transform 0.3s,
+		box-shadow 0.3s;
+}
+
+.brand:hover .brandSymbol {
+	box-shadow: 0 0 22px rgba(201, 166, 255, 0.35);
+	transform: rotate(-8deg) scale(1.08);
 }
 
 .brandMark {
@@ -54,7 +72,9 @@
 	padding: 0.5rem 0.18rem;
 	text-decoration: none;
 	position: relative;
-	transition: color 0.25s ease;
+	transition:
+		color 0.25s,
+		transform 0.25s;
 }
 
 .navLinks a::after {
@@ -67,15 +87,132 @@
 	background: var(--accent);
 	transform: scaleX(0);
 	transform-origin: left;
-	transition: transform 0.25s ease;
+	transition: transform 0.25s;
 }
 
 .navLinks a:hover,
 .navLinks a.active {
 	color: var(--cream);
+	transform: translateY(-2px);
 }
-
 .navLinks a:hover::after,
 .navLinks a.active::after {
 	transform: scaleX(1);
+}
+
+.headerAction {
+	margin-left: auto;
+}
+
+.menuToggle {
+	display: none;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 28px;
+	height: 20px;
+	background: transparent;
+	border: none;
+	padding: 0;
+	z-index: 100;
+}
+
+.menuToggle span {
+	display: block;
+	width: 100%;
+	height: 2px;
+	background: var(--cream);
+	transition:
+		transform 0.3s,
+		opacity 0.3s;
+}
+
+.menuToggle.active span:nth-child(1) {
+	transform: translateY(9px) rotate(45deg);
+}
+.menuToggle.active span:nth-child(2) {
+	opacity: 0;
+}
+.menuToggle.active span:nth-child(3) {
+	transform: translateY(-9px) rotate(-45deg);
+}
+
+section,
+[id] {
+	scroll-margin-top: 80px;
+}
+section:focus,
+[id]:focus {
+	outline: none;
+}
+
+@media (max-width: 730px) {
+	.siteHeader {
+		align-items: center;
+		padding: 14px 16px;
+		flex-wrap: wrap;
+	}
+	.navLinks {
+		justify-content: center;
+		overflow-x: auto;
+		scrollbar-width: none;
+	}
+	.navLinks::-webkit-scrollbar,
+	.headerAction {
+		display: none;
+	}
+
+	.menuToggle {
+		display: flex;
+	}
+
+	.navLinks {
+		position: fixed;
+		top: 70px;
+		right: -100%;
+		width: auto;
+		height: auto;
+		min-width: 200px;
+		border: 1px solid rgba(211, 194, 255, 0.12);
+		border-radius: var(--radius-lg);
+		box-shadow:
+			0 24px 80px rgba(3, 0, 12, 0.5),
+			inset 0 1px 0 rgba(255, 255, 255, 0.08);
+		backdrop-filter: blur(22px) saturate(135%);
+		flex-direction: column;
+		justify-content: center;
+		align-items: stretch;
+		gap: 8px;
+		padding: 20px;
+		transition:
+			right 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+			opacity 0.3s;
+		z-index: 90;
+		opacity: 0;
+	}
+
+	.navLinks--open {
+		right: 16px;
+		opacity: 1;
+	}
+
+	.navLinks a {
+		font-size: 1rem;
+		padding: 12px 20px;
+		text-align: center;
+		border-radius: 12px;
+		transition:
+			background 0.25s,
+			color 0.25s;
+	}
+
+	.navLinks a:hover,
+	.navLinks a.active {
+		background: rgba(201, 166, 255, 0.1);
+		color: var(--cream);
+		transform: none;
+	}
+
+	.navLinks a::after {
+		display: none;
+	}
 }

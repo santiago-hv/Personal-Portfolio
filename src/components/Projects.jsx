@@ -1,26 +1,36 @@
-import { ChipList, GlassCard, SectionIntro } from "./UI";
+import { motion } from "framer-motion";
+import { ChipList, GlassCard, SectionIntro, staggerContainer, itemVariants } from "./UI";
 import { projects } from "../data/portfolio";
 
 export function Projects() {
 	return (
-		<section id="projects" className="sectionBlock projectsSection">
+		<motion.section
+			id="projects"
+			className="sectionBlock"
+			initial="hidden"
+			whileInView="visible"
+			viewport={{ once: true, margin: "-100px" }}
+			variants={staggerContainer}
+		>
 			<SectionIntro
 				eyebrow="Featured Work"
 				title="Projects presented as polished product showcases."
 				text="For now the focus is visual: deep cards, clear hierarchy, and room to turn each case into a complete story later."
 			/>
-			<div className="projectsGrid">
+			<motion.div className="cardsGrid" variants={staggerContainer}>
 				{projects.map((project, index) => (
-					<GlassCard key={project.title} className="projectCard">
-						<div className="projectCardHeader">
-							<span className="projectBadge">0{index + 1}</span>
-							<h3>{project.title}</h3>
-						</div>
-						<p>{project.description}</p>
-						<ChipList items={project.tags} />
-					</GlassCard>
+					<motion.div key={project.title} variants={itemVariants}>
+						<GlassCard className="cardItem">
+							<div className="cardHeader">
+								<span className="projectBadge">0{index + 1}</span>
+								<h3>{project.title}</h3>
+							</div>
+							<p>{project.description}</p>
+							<ChipList items={project.tags} />
+						</GlassCard>
+					</motion.div>
 				))}
-			</div>
-		</section>
+			</motion.div>
+		</motion.section>
 	);
 }
