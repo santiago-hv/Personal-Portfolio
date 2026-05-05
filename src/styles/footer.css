@@ -1,24 +1,21 @@
 .siteFooter {
 	width: min(1200px, 100%);
 	margin: 0 auto;
-	padding: 32px 24px 40px;
+	padding: 32px 24px 44px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	gap: 24px;
-	border-top: 1px solid rgba(255, 255, 255, 0.02);
+	border-top: 1px solid rgba(211, 194, 255, 0.08);
 }
 
 .siteFooter strong {
+	color: var(--cream);
 	font-size: 0.95rem;
-	background: var(--primary-gradient);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-clip: text;
 }
 
 .siteFooter p {
-	color: #a989d4;
+	color: var(--faint);
 	margin-top: 8px;
 	font-size: 0.9rem;
 }
@@ -30,26 +27,26 @@
 }
 
 .footerLinks a {
-	color: #c9a8f0;
-	text-decoration: none;
+	color: var(--muted);
 	font-size: 0.92rem;
-	transition: all 0.3s ease;
+	text-decoration: none;
 	position: relative;
+	transition: color 0.25s ease;
 }
 
 .footerLinks a::after {
 	content: "";
 	position: absolute;
-	bottom: -4px;
 	left: 0;
+	bottom: -4px;
 	width: 0;
 	height: 1px;
-	background: var(--secondary-gradient);
-	transition: width 0.3s ease;
+	background: var(--accent);
+	transition: width 0.25s ease;
 }
 
 .footerLinks a:hover {
-	color: var(--text-primary);
+	color: var(--cream);
 }
 
 .footerLinks a:hover::after {

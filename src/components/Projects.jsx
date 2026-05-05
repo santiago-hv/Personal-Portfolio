@@ -1,47 +1,24 @@
-const projects = [
-	{
-		title: "Fintech Dashboard",
-		description:
-			"A modern dashboard for analytics and payment management with responsive charts and secure authentication.",
-		tags: ["React", "Tailwind", "Node.js", "PostgreSQL"],
-	},
-	{
-		title: "E-commerce Platform",
-		description:
-			"A full-stack storefront with product browsing, cart checkout, and order administration.",
-		tags: ["Next.js", "Stripe", "MongoDB", "AWS"],
-	},
-	{
-		title: "Portfolio CMS",
-		description:
-			"A content-driven portfolio system that simplifies content updates and project publishing.",
-		tags: ["TypeScript", "GraphQL", "Prisma", "Vercel"],
-	},
-];
+import { ChipList, GlassCard, SectionIntro } from "./UI";
+import { projects } from "../data/portfolio";
 
 export function Projects() {
 	return (
-		<section id="projects" className="projectsSection">
-			<div className="sectionHeading">
-				<div>
-					<p className="sectionLabel">Featured Work</p>
-					<h2>Projects built with precision and polish.</h2>
-				</div>
-			</div>
+		<section id="projects" className="sectionBlock projectsSection">
+			<SectionIntro
+				eyebrow="Featured Work"
+				title="Projects presented as polished product showcases."
+				text="For now the focus is visual: deep cards, clear hierarchy, and room to turn each case into a complete story later."
+			/>
 			<div className="projectsGrid">
-				{projects.map((project) => (
-					<article key={project.title} className="projectCard">
+				{projects.map((project, index) => (
+					<GlassCard key={project.title} className="projectCard">
 						<div className="projectCardHeader">
-							<span className="projectBadge">Project</span>
+							<span className="projectBadge">0{index + 1}</span>
 							<h3>{project.title}</h3>
 						</div>
 						<p>{project.description}</p>
-						<div className="projectTags">
-							{project.tags.map((tag) => (
-								<span key={tag}>{tag}</span>
-							))}
-						</div>
-					</article>
+						<ChipList items={project.tags} />
+					</GlassCard>
 				))}
 			</div>
 		</section>

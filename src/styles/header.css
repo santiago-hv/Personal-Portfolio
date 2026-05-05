@@ -1,71 +1,81 @@
 .siteHeader {
-	width: min(1200px, 100%);
-	margin: 0 auto;
-	padding: 28px 24px 24px;
+	width: 100%;
+	padding: 16px max(20px, calc((100vw - 1240px) / 2 + 20px));
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	gap: 32px;
-	border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+	gap: 24px;
 	position: sticky;
 	top: 0;
 	z-index: 50;
-	background: rgba(5, 0, 8, 0.85);
-	backdrop-filter: blur(10px);
+	background: rgba(11, 10, 19, 0.88);
+	backdrop-filter: blur(18px);
+	border-bottom: 1px solid rgba(211, 194, 255, 0.08);
 }
 
 .brand {
 	display: flex;
 	align-items: center;
-	gap: 10px;
+	gap: 12px;
 	flex-shrink: 0;
+	text-decoration: none;
+}
+
+.brandSymbol {
+	display: grid;
+	place-items: center;
+	width: 18px;
+	height: 18px;
+	border: 1px solid var(--accent);
+	border-radius: 4px;
+	color: var(--accent);
+	font-size: 0.62rem;
+	font-weight: 800;
 }
 
 .brandMark {
-	font-weight: 800;
-	letter-spacing: 0.08em;
-	text-transform: uppercase;
-	font-size: 0.9rem;
-	background: var(--primary-gradient);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-clip: text;
+	color: var(--cream);
+	font-size: 1.02rem;
+	font-weight: 700;
+	letter-spacing: -0.03em;
 }
 
 .navLinks {
 	display: flex;
-	gap: 32px;
-	flex-wrap: wrap;
-	justify-content: center;
 	flex: 1;
+	justify-content: center;
+	gap: 20px;
 }
 
 .navLinks a {
-	color: var(--text-tertiary);
+	color: var(--muted);
+	font-size: 0.88rem;
+	font-weight: 800;
+	padding: 0.5rem 0.18rem;
 	text-decoration: none;
-	font-size: 0.95rem;
-	font-weight: 500;
-	transition: all 0.3s ease;
 	position: relative;
+	transition: color 0.25s ease;
 }
 
 .navLinks a::after {
 	content: "";
 	position: absolute;
-	bottom: -6px;
 	left: 0;
-	width: 0;
+	right: 0;
+	bottom: -4px;
 	height: 2px;
-	background: var(--secondary-gradient);
-	transition: width 0.3s ease;
+	background: var(--accent);
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 0.25s ease;
 }
 
-.navLinks a.active,
-.navLinks a:hover {
-	color: var(--text-primary);
+.navLinks a:hover,
+.navLinks a.active {
+	color: var(--cream);
 }
 
-.navLinks a.active::after,
-.navLinks a:hover::after {
-	width: 100%;
+.navLinks a:hover::after,
+.navLinks a.active::after {
+	transform: scaleX(1);
 }

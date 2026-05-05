@@ -1,44 +1,67 @@
 import profileImage from "../assets/20260415_155653.jpg";
+import githubIcon from "../assets/svg/github.svg";
+import linkedinIcon from "../assets/svg/icons8-linkedin.svg";
+import { ChipList, GlassCard } from "./UI";
+import { techStack } from "../data/portfolio";
 
 export function Hero() {
 	return (
 		<section id="home" className="heroSection">
+			<div className="orb orb--one" />
+			<div className="orb orb--two" />
 			<div className="heroGrid">
-				<article className="heroCard heroCard--main glass-effect-strong">
-					<span className="heroTag">FULLSTACK DEVELOPER</span>
+				<GlassCard className="heroCard heroCard--main">
+					<span className="eyebrow">FULLSTACK DEVELOPER</span>
 					<h1>
-						Hi, I'm <span>Santiago Villegas</span>
+						{"< "}Hi, I'm <span>Santiago Villegas</span>
+						{" />"}
 					</h1>
 					<p>
-						I'm a software developer specializing in building exceptional
-						digital experiences. Currently, I'm focused on building responsive
-						web applications.
+						Crafting robust and scalable fullstack solutions with modern
+						technologies. Bridging the gap between elegant design and
+						high-performance engineering.
 					</p>
 					<div className="heroActions">
-						<button className="button button--primary">Contact</button>
-						<button className="button button--secondary">View Projects</button>
+						<a className="button button--primary" href="#contact">
+							Contact Me
+						</a>
+						<a className="button button--secondary" href="#projects">
+							View Projects
+						</a>
 					</div>
-					<div className="heroTechs">
-						<span>React</span>
-						<span>Node.js</span>
-						<span>TypeScript</span>
-						<span>Next.js</span>
-						<span>Tailwind CSS</span>
-						<span>PostgreSQL</span>
-					</div>
-				</article>
+					<ChipList items={techStack} className="heroTechs" />
+				</GlassCard>
 
-				<article className="heroCard heroCard--profile ">
+				<GlassCard className="heroCard heroCard--profile">
 					<img
 						className="personalImg"
 						src={profileImage}
 						alt="Santiago Villegas"
 					/>
 					<div className="profileStatus">
-						<strong>Current Status:</strong>
-						<span>Available for work</span>
+						<span className="statusDot" />
+						<div>
+							<strong>Status:</strong>
+							<span>Available for work</span>
+						</div>
 					</div>
-				</article>
+					<div className="socialDock" aria-label="Social links">
+						<a
+							href="https://github.com/santiago-hv"
+							target="_blank"
+							rel="noreferrer"
+						>
+							<img src={githubIcon} alt="GitHub" />
+						</a>
+						<a
+							href="https://www.linkedin.com/in/santiago-huapalla-villegas/"
+							target="_blank"
+							rel="noreferrer"
+						>
+							<img src={linkedinIcon} alt="LinkedIn" />
+						</a>
+					</div>
+				</GlassCard>
 			</div>
 		</section>
 	);
