@@ -40,7 +40,7 @@ export function Hero() {
 						<p>
 							Full-stack engineering student specializing in the modern JavaScript
 							ecosystem. I combine a strong background in clean software
-							architecture with tools like React, Node.js, and Tailwind CSS to
+							architecture with tools like React and Node.js to
 							craft highly responsive and maintainable web applications.
 						</p>
 						<div className="heroActions">
