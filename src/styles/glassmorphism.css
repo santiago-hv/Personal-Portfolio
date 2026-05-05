@@ -1,0 +1,17 @@
+.glass-effect {
+	background: rgba(255, 255, 255, 0.02);
+	backdrop-filter: blur(15px);
+	border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-effect-strong {
+	background: rgba(255, 255, 255, 0.04);
+	backdrop-filter: blur(20px);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-effect-subtle {
+	background: rgba(255, 255, 255, 0.01);
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.03);
+}
