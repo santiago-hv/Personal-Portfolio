@@ -1,0 +1,48 @@
+*{
+    color: #D2BBFF;
+}
+body{
+    background-color: #000000;
+    background: linear-gradient(309deg,rgba(0, 0, 0, 1) 0%, rgba(37, 0, 90, 1) 47%, rgba(41, 0, 107, 1) 83%);
+    
+}
+
+header{
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+nav{
+    display: flex;
+    gap: 20px;
+    
+}
+
+.socialButtons, .principalButtons{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding-bottom: 20px;
+}
+
+.buttonsInfo{
+    display: flex;
+    flex-direction: column;
+}
+
+.personalImg{
+    max-height: 300px;
+    border-radius: 20px;
+}
+
+.icons{
+    max-width: 40px;
+    max-height: 40px;
+}
+
+.infoBox{
+    display: flex;
+
+}
