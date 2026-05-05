@@ -1,54 +1,35 @@
 .siteFooter {
-	width: min(1200px, 100%);
-	margin: 0 auto;
-	padding: 32px 24px 44px;
+	width: 100%;
+	margin:0 auto;
+	padding: 20px 40px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	gap: 24px;
-	border-top: 1px solid rgba(211, 194, 255, 0.08);
+	border-top: 1px solid rgba(211,194,255,0.08);
 }
 
-.siteFooter strong {
-	color: var(--cream);
-	font-size: 0.95rem;
-}
+.siteFooter strong { color: var(--cream); font-size: 0.95rem; }
+.siteFooter p { color: var(--faint); margin-top: 8px; font-size: 0.9rem; }
 
-.siteFooter p {
-	color: var(--faint);
-	margin-top: 8px;
-	font-size: 0.9rem;
-}
-
-.footerLinks {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 24px;
-}
+.footerLinks { display: flex; flex-wrap: wrap; gap: 24px; }
 
 .footerLinks a {
 	color: var(--muted);
 	font-size: 0.92rem;
 	text-decoration: none;
 	position: relative;
-	transition: color 0.25s ease;
+	transition: color 0.25s;
 }
 
 .footerLinks a::after {
 	content: "";
 	position: absolute;
-	left: 0;
-	bottom: -4px;
-	width: 0;
-	height: 1px;
+	left:0; bottom: -4px;
+	width:0; height:1px;
 	background: var(--accent);
-	transition: width 0.25s ease;
+	transition: width 0.25s;
 }
 
-.footerLinks a:hover {
-	color: var(--cream);
-}
-
-.footerLinks a:hover::after {
-	width: 100%;
-}
+.footerLinks a:hover { color: var(--cream); }
+.footerLinks a:hover::after { width:100%; }
