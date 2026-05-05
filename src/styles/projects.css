@@ -1,0 +1,125 @@
+.projectsSection {
+	display: flex;
+	flex-direction: column;
+	gap: 28px;
+}
+
+.projectsSection h2 {
+	font-size: clamp(2rem, 4vw, 3.2rem);
+	max-width: 800px;
+	line-height: 1.1;
+	font-weight: 800;
+	letter-spacing: -0.01em;
+}
+
+.projectsGrid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 24px;
+}
+
+.projectCard {
+	background: linear-gradient(
+		135deg,
+		rgba(14, 8, 30, 0.5),
+		rgba(20, 10, 42, 0.3)
+	);
+	border: 1px solid rgba(109, 45, 213, 0.1);
+	border-radius: 28px;
+	padding: 32px;
+	display: flex;
+	flex-direction: column;
+	gap: 22px;
+	backdrop-filter: blur(15px);
+	transition: all 0.4s ease;
+	position: relative;
+	overflow: hidden;
+}
+
+.projectCard::after {
+	content: "";
+	position: absolute;
+	top: -50%;
+	right: -50%;
+	width: 200px;
+	height: 200px;
+	background: radial-gradient(circle, rgba(168, 139, 250, 0.15), transparent);
+	border-radius: 50%;
+	opacity: 0;
+	transition: opacity 0.4s ease;
+}
+
+.projectCard:hover {
+	border-color: rgba(109, 45, 213, 0.3);
+	box-shadow: 0 12px 40px rgba(109, 45, 213, 0.08);
+	transform: translateY(-4px);
+}
+
+.projectCard:hover::after {
+	opacity: 1;
+}
+
+.projectCardHeader {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	position: relative;
+	z-index: 1;
+}
+
+.projectBadge {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(
+		135deg,
+		rgba(109, 45, 213, 0.15),
+		rgba(90, 35, 180, 0.1)
+	);
+	color: #c9a8f0;
+	border-radius: 999px;
+	padding: 0.6rem 1rem;
+	font-size: 0.8rem;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	font-weight: 600;
+	border: 1px solid rgba(109, 45, 213, 0.2);
+	width: fit-content;
+}
+
+.projectCard h3 {
+	font-size: 1.35rem;
+	font-weight: 700;
+	position: relative;
+	z-index: 1;
+}
+
+.projectCard p {
+	color: #c9a8f0;
+	line-height: 1.8;
+	position: relative;
+	z-index: 1;
+}
+
+.projectTags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	position: relative;
+	z-index: 1;
+}
+
+.projectTags span {
+	padding: 0.55rem 0.9rem;
+	border-radius: 999px;
+	background: rgba(109, 45, 213, 0.08);
+	border: 1px solid rgba(109, 45, 213, 0.15);
+	color: #c9a8f0;
+	font-size: 0.82rem;
+	transition: all 0.3s ease;
+}
+
+.projectTags span:hover {
+	background: rgba(109, 45, 213, 0.15);
+	border-color: rgba(109, 45, 213, 0.3);
+}

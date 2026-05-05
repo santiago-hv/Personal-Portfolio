@@ -1,0 +1,104 @@
+:root {
+	color-scheme: dark;
+	font-family: "Inter", system-ui, sans-serif;
+	color: #e6e0ff;
+	background: #050008;
+	line-height: 1.6;
+
+	--primary-gradient: linear-gradient(
+		135deg,
+		#9575e8 0%,
+		#7c4de0 50%,
+		#6d2dd5 100%
+	);
+	--secondary-gradient: linear-gradient(135deg, #0298a8 0%, #057a8e 100%);
+	--glass-bg: rgba(255, 255, 255, 0.03);
+	--glass-border: rgba(255, 255, 255, 0.06);
+	--text-primary: #f3e8ff;
+	--text-secondary: #dfc9ff;
+	--text-tertiary: #c9a8f0;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body,
+#root {
+	min-height: 100%;
+}
+
+body {
+	background:
+		radial-gradient(
+			circle at top center,
+			rgba(109, 45, 213, 0.08),
+			transparent 40%
+		),
+		radial-gradient(
+			circle at bottom right,
+			rgba(124, 77, 224, 0.06),
+			transparent 50%
+		),
+		radial-gradient(
+			circle at bottom left,
+			rgba(2, 152, 168, 0.04),
+			transparent 50%
+		),
+		linear-gradient(180deg, #050008 0%, #0f001a 30%, #080010 70%, #030007 100%);
+	color: var(--text-secondary);
+}
+
+button,
+a {
+	font: inherit;
+}
+
+button {
+	cursor: pointer;
+}
+
+.appShell {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+main {
+	width: min(1200px, 100%);
+	margin: 0 auto;
+	padding: 40px 24px 80px;
+	display: flex;
+	flex-direction: column;
+	gap: 60px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: var(--text-primary);
+}
+
+p {
+	color: var(--text-secondary);
+}
+
+.sectionHeading,
+.sectionHeader {
+	margin-bottom: 12px;
+}
+
+.sectionLabel {
+	color: #a989d4;
+	text-transform: uppercase;
+	letter-spacing: 0.15em;
+	font-size: 0.75rem;
+	font-weight: 600;
+	margin-bottom: 12px;
+}
