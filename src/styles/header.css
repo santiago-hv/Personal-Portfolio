@@ -1,0 +1,81 @@
+.siteHeader {
+	width: 100%;
+	padding: 16px max(20px, calc((100vw - 1240px) / 2 + 20px));
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+	position: sticky;
+	top: 0;
+	z-index: 50;
+	background: rgba(11, 10, 19, 0.88);
+	backdrop-filter: blur(18px);
+	border-bottom: 1px solid rgba(211, 194, 255, 0.08);
+}
+
+.brand {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	flex-shrink: 0;
+	text-decoration: none;
+}
+
+.brandSymbol {
+	display: grid;
+	place-items: center;
+	width: 18px;
+	height: 18px;
+	border: 1px solid var(--accent);
+	border-radius: 4px;
+	color: var(--accent);
+	font-size: 0.62rem;
+	font-weight: 800;
+}
+
+.brandMark {
+	color: var(--cream);
+	font-size: 1.02rem;
+	font-weight: 700;
+	letter-spacing: -0.03em;
+}
+
+.navLinks {
+	display: flex;
+	flex: 1;
+	justify-content: center;
+	gap: 20px;
+}
+
+.navLinks a {
+	color: var(--muted);
+	font-size: 0.88rem;
+	font-weight: 800;
+	padding: 0.5rem 0.18rem;
+	text-decoration: none;
+	position: relative;
+	transition: color 0.25s ease;
+}
+
+.navLinks a::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: -4px;
+	height: 2px;
+	background: var(--accent);
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 0.25s ease;
+}
+
+.navLinks a:hover,
+.navLinks a.active {
+	color: var(--cream);
+}
+
+.navLinks a:hover::after,
+.navLinks a.active::after {
+	transform: scaleX(1);
+}

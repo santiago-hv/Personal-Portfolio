@@ -1,0 +1,160 @@
+.button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid transparent;
+	border-radius: 999px;
+	padding: 0.9rem 1.55rem;
+	font-size: 0.82rem;
+	font-weight: 800;
+	letter-spacing: 0.06em;
+	text-decoration: none;
+	position: relative;
+	overflow: hidden;
+	transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.button::before {
+	content: "";
+	position: absolute;
+	inset: 0 auto 0 -100%;
+	width: 100%;
+	background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+	transition: left 0.5s ease;
+}
+
+.button:hover {
+	transform: translateY(-2px);
+}
+
+.button:hover::before {
+	left: 100%;
+}
+
+.button--primary,
+.button--ghost {
+	background: #eee8ff;
+	color: #241a3a;
+}
+
+.button--primary {
+	box-shadow: 0 16px 34px rgba(201, 166, 255, 0.22);
+}
+
+.button--primary:hover {
+	box-shadow: 0 20px 44px rgba(201, 166, 255, 0.3);
+}
+
+.button--secondary {
+	background: transparent;
+	color: var(--cream);
+	border-color: rgba(211, 194, 255, 0.22);
+	backdrop-filter: blur(14px);
+}
+
+.button--secondary:hover {
+	background: rgba(201, 166, 255, 0.08);
+	border-color: rgba(201, 166, 255, 0.45);
+}
+
+.button--ghost:hover {
+	background: #fff;
+}
+
+.sectionBlock {
+	display: flex;
+	flex-direction: column;
+	gap: 28px;
+}
+
+.sectionIntro {
+	display: grid;
+	gap: 12px;
+	max-width: 780px;
+}
+
+.sectionIntro h2 {
+	font-size: clamp(2.15rem, 5vw, 4rem);
+	line-height: 0.98;
+	letter-spacing: -0.045em;
+}
+
+.eyebrow,
+.cardKicker,
+.contactLinks span {
+	font-size: 0.75rem;
+	font-weight: 800;
+	letter-spacing: 0.14em;
+	line-height: 1;
+	text-transform: uppercase;
+}
+
+.eyebrow {
+	width: fit-content;
+	color: var(--accent);
+}
+
+.sectionText {
+	max-width: 720px;
+	font-size: clamp(1rem, 2vw, 1.12rem);
+	line-height: 1.85;
+}
+
+.glassCard {
+	position: relative;
+	overflow: hidden;
+	background:
+		linear-gradient(135deg, rgba(35, 34, 45, 0.92), rgba(43, 31, 72, 0.9)),
+		radial-gradient(circle at 78% 24%, rgba(143, 77, 255, 0.28), transparent 36%);
+	border: 1px solid var(--border);
+	border-radius: var(--radius-lg);
+	box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+	backdrop-filter: blur(22px) saturate(135%);
+	transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.glassCard::before {
+	content: "";
+	position: absolute;
+	inset: 1px;
+	pointer-events: none;
+	border-radius: calc(var(--radius-lg) - 1px);
+	background: linear-gradient(120deg, rgba(255, 255, 255, 0.08), transparent 42%);
+	opacity: 0.75;
+}
+
+.glassCard:hover {
+	transform: translateY(-6px);
+	border-color: var(--border-strong);
+	box-shadow: 0 30px 90px rgba(3, 0, 12, 0.6), 0 0 54px rgba(151, 88, 255, 0.14);
+}
+
+.chipList {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	position: relative;
+	z-index: 1;
+}
+
+.chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 0.58rem 0.88rem;
+	border: 1px solid rgba(218, 190, 255, 0.18);
+	border-radius: 999px;
+	background: rgba(201, 166, 255, 0.08);
+	color: var(--cream);
+	font-size: 0.82rem;
+	font-weight: 600;
+}
+
+.chip::before {
+	content: "";
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: var(--accent);
+	box-shadow: 0 0 16px rgba(183, 124, 255, 0.9);
+}

@@ -1,0 +1,98 @@
+.contactCard {
+	display: grid;
+	grid-template-columns: minmax(0, 0.92fr) minmax(280px, 0.7fr);
+	gap: clamp(24px, 4vw, 52px);
+	padding: clamp(26px, 5vw, 52px);
+}
+
+.contactCard::before {
+	content: "";
+	position: absolute;
+	top: -120px;
+	right: 10%;
+	width: 360px;
+	height: 360px;
+	border-radius: 50%;
+	pointer-events: none;
+	background: radial-gradient(circle, rgba(143, 77, 255, 0.18), transparent 68%);
+}
+
+.contactCopy,
+.contactForm {
+	position: relative;
+	z-index: 1;
+}
+
+.contactCopy {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 34px;
+}
+
+.contactLinks {
+	display: grid;
+	gap: 12px;
+}
+
+.contactLinks a {
+	display: flex;
+	justify-content: space-between;
+	gap: 18px;
+	padding: 16px 0;
+	border-bottom: 1px solid rgba(218, 190, 255, 0.14);
+	text-decoration: none;
+}
+
+.contactLinks span {
+	color: var(--faint);
+}
+
+.contactLinks strong {
+	color: var(--cream);
+	font-weight: 700;
+	text-align: right;
+}
+
+.contactForm {
+	display: grid;
+	gap: 16px;
+	padding: 22px;
+	border: 1px solid rgba(218, 190, 255, 0.15);
+	border-radius: 28px;
+	background: rgba(8, 4, 20, 0.46);
+}
+
+.contactForm label {
+	display: grid;
+	gap: 8px;
+}
+
+.contactForm label span {
+	color: var(--cream);
+	font-size: 0.86rem;
+	font-weight: 800;
+}
+
+.contactForm input,
+.contactForm textarea {
+	width: 100%;
+	border: 1px solid rgba(218, 190, 255, 0.15);
+	border-radius: 18px;
+	background: rgba(183, 124, 255, 0.075);
+	color: var(--cream);
+	padding: 0.95rem 1rem;
+	outline: none;
+	resize: vertical;
+}
+
+.contactForm input::placeholder,
+.contactForm textarea::placeholder {
+	color: rgba(203, 191, 170, 0.58);
+}
+
+.contactForm input:focus,
+.contactForm textarea:focus {
+	border-color: rgba(217, 184, 255, 0.55);
+	box-shadow: 0 0 0 4px rgba(183, 124, 255, 0.1);
+}
