@@ -1,0 +1,11 @@
+.icon{
+    width: 20px;
+    height: 20px;
+    filter: invert(100%);
+}
+
+.skillIcon {
+    width: 30px;
+    height: 30px;
+    filter: invert(100%);
+}

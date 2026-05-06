@@ -1,6 +1,6 @@
 .cardsGrid {
 	display: grid;
-	grid-template-columns: repeat(3, minmax(0,1fr));
+	grid-template-columns: repeat(3, minmax(0, 1fr));
 	gap: 22px;
 }
 
@@ -11,6 +11,7 @@
 	flex-direction: column;
 	justify-content: space-between;
 	gap: 28px;
+	height: 100%;
 }
 
 .cardHeader {
@@ -18,34 +19,46 @@
 	align-items: flex-start;
 	gap: 16px;
 	position: relative;
-	z-index:1;
+	z-index: 1;
 }
 
 .cardIndex {
 	display: grid;
 	place-items: center;
-	width: 52px; height: 52px;
+	width: 52px;
+	height: 52px;
 	border-radius: 18px;
-	background: rgba(201,166,255,0.1);
-	border:1px solid rgba(201,166,255,0.24);
+	background: rgba(201, 166, 255, 0.1);
+	border: 1px solid rgba(201, 166, 255, 0.24);
 	color: var(--accent);
 	font-family: "Playfair Display", Georgia, serif;
 	font-size: 1.3rem;
 	font-weight: 800;
-	flex-shrink:0;
-	transition: transform 0.3s, box-shadow 0.3s;
+	flex-shrink: 0;
+	transition:
+		transform 0.3s,
+		box-shadow 0.3s;
 }
 
-.cardItem:hover .cardIndex { box-shadow: 0 0 28px rgba(201,166,255,0.18); transform: rotate(-6deg) scale(1.06); }
+.cardItem:hover .cardIndex {
+	box-shadow: 0 0 28px rgba(201, 166, 255, 0.18);
+	transform: rotate(-6deg) scale(1.06);
+}
 
-.cardKicker { color: var(--faint); }
+.cardKicker {
+	color: var(--faint);
+}
 
 .cardItem h3 {
 	font-size: clamp(1.35rem, 2.2vw, 1.75rem);
 	line-height: 1.1;
 }
 
-.cardItem p { line-height: 1.8; position: relative; z-index:1; }
+.cardItem p {
+	line-height: 1.8;
+	position: relative;
+	z-index: 1;
+}
 
 .projectBadge {
 	width: fit-content;
@@ -54,20 +67,15 @@
 	font-weight: 800;
 	line-height: 1;
 	opacity: 0.8;
-	transition: transform 0.3s, opacity 0.3s;
+	transition:
+		transform 0.3s,
+		opacity 0.3s;
 }
 
-.cardItem:hover .projectBadge { opacity: 1; transform: translateX(8px); }
-
-.cardItem::after {
-	content: "";
-	position: absolute;
-	top: -80px; right: -80px;
-	width: 220px; height: 220px;
-	border-radius: 50%;
-	pointer-events: none;
-	background: radial-gradient(circle, rgba(143,77,255,0.18), transparent 68%);
-	transition: transform 0.5s, opacity 0.5s;
+.cardItem:hover .projectBadge {
+	opacity: 1;
+	transform: translateX(8px);
 }
 
-.cardItem:hover::after { opacity: 0.9; transform: scale(1.35) translate(-10px,10px); }
+/* Decorative orb moved to shared .accentOrb class in ui.css */
+.cardItem::after { content: none; }

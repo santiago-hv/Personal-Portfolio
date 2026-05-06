@@ -14,6 +14,10 @@
 	.cardsGrid {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
+	.personalImg{
+		min-height: auto;
+		max-height: 400px;
+	}
 }
 
 @media (max-width: 730px) {
