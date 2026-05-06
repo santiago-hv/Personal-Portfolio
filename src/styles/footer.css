@@ -33,3 +33,14 @@
 
 .footerLinks a:hover { color: var(--cream); }
 .footerLinks a:hover::after { width:100%; }
+
+.footerIcons{
+	width: 20px;
+	height: 20px;
+	filter: invert(100%);
+}
+
+.footerLink{
+	display: flex;
+	gap: 5px;
+}

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ChipList, GlassCard, SectionIntro, staggerContainer, itemVariants } from "./UI";
 import { skills } from "../data/portfolio";
-
+import { IconList } from "./UI";
 export function Skills() {
 	return (
 		<motion.section
@@ -13,7 +13,7 @@ export function Skills() {
 			variants={staggerContainer}
 		>
 			<SectionIntro
-				eyebrow="Technical Arsenal"
+				eyebrow="Technical Skills"
 				title="Skills organized as parts of a visual system."
 				text="A compact stack for building complete products, from a clear interface to the technical foundation behind it."
 			/>
@@ -22,14 +22,16 @@ export function Skills() {
 					<motion.div key={skill.title} variants={itemVariants}>
 						<GlassCard className="cardItem">
 							<div className="cardHeader">
-								<span className="cardIndex">{skill.index}</span>
+								<span className="cardIndex">
+									<img className="skillIcon" src={skill.icon} alt={`${skill.title} Icon`} />
+								</span>
 								<div>
 									<p className="cardKicker">Specialty</p>
 									<h3>{skill.title}</h3>
 								</div>
 							</div>
 							<p>{skill.description}</p>
-							<ChipList items={skill.tags} />
+							<IconList icons={skill.icons} tags={skill.tags} />
 						</GlassCard>
 					</motion.div>
 				))}

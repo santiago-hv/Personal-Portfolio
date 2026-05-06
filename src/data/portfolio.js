@@ -1,3 +1,23 @@
+import frontEndIcon from "../assets/svg/monitor-svgrepo-com.svg";
+import backEndIcon from "../assets/svg/servers-svgrepo-com.svg";
+import toolsIcon from "../assets/svg/terminal-svgrepo-com.svg";
+import reactIcon from "../assets/svg/react.svg";
+import nodeIcon from "../assets/svg/nodedotjs.svg";
+import cssIcon from "../assets/svg/css.svg";
+import jsIcon from "../assets/svg/javascript.svg";
+import gitIcon from "../assets/svg/git.svg";
+import pythonIcon from "../assets/svg/python.svg";
+import laravelIcon from "../assets/svg/laravel.svg";
+import htmlIcon from "../assets/svg/html5.svg";
+import linuxIcon from "../assets/svg/linux.svg";
+import phpIcon from "../assets/svg/php.svg";
+import javaIcon from "../assets/svg/java-svgrepo-com.svg";
+import viteIcon from "../assets/svg/vite.svg";
+import githubIcon from "../assets/svg/github.svg";
+import sqlServerIcon from "../assets/svg/Microsoft SQL Server.svg";
+import postsgreIcon from "../assets/svg/postgresql.svg";
+import expressIcon from "../assets/svg/express.svg";
+import dockerIcon from "../assets/svg/docker.svg";
 export const techStack = [
 	"React",
 	"JavaScript",
@@ -6,30 +26,38 @@ export const techStack = [
 	"Vite",
 	"Git",
 	"Python",
-	"Java"
+	"Java",
+	"Laravel",
+	"SQL Server",
+	"PostgreSQL",	
+	"PHP",
+	"Docker"
 ];
 
 export const skills = [
 	{
 		title: "Frontend",
-		index: "01",
+		icon: frontEndIcon,
 		description:
 			"Responsive interfaces focused on experience, accessibility, and visual micro-details.",
-		tags: ["React", "JavaScript", "CSS", "HTML", "Vite", "Responsive UI"],
+		tags: ["React", "JavaScript", "CSS", "HTML", "Vite"],
+		icons: [reactIcon, jsIcon, cssIcon, htmlIcon, viteIcon],
 	},
 	{
 		title: "Backend",
-		index: "02",
+		icon: backEndIcon,
 		description:
 			"Clear APIs, clean data structure, and logic designed to scale without losing order.",
-		tags: ["Node.js", "Express", "SQL Server", "Java", "Python"],
+		tags: ["Node.js", "Express", "Java", "Python", "Laravel", "Php", "SQL Server", "PostgreSQL"],
+		icons: [nodeIcon, expressIcon, javaIcon, pythonIcon, laravelIcon, phpIcon, sqlServerIcon, postsgreIcon],
 	},
 	{
-		title: "Workflow",
-		index: "03",
+		title: "Tools",
+		icon: toolsIcon,
 		description:
 			"Project organization, version control, and deployments focused on shipping quickly.",
-		tags: ["Git", "GitHub", "Vercel", "Figma", "Testing"],
+		tags: ["Git", "GitHub", "Linux", "Docker"],
+		icons: [gitIcon, githubIcon, linuxIcon, dockerIcon],
 	},
 ];
 
@@ -55,8 +83,16 @@ export const projects = [
 ];
 
 export const contactLinks = [
-	{ label: "Email", value: "santiagoh0802@gmail.com", href: "mailto:santiagoh0802@gmail.com" },
-	{ label: "GitHub", value: "santiago-hv", href: "https://github.com/santiago-hv" },
+	{
+		label: "Email",
+		value: "santiagoh0802@gmail.com",
+		href: "mailto:santiagoh0802@gmail.com",
+	},
+	{
+		label: "GitHub",
+		value: "santiago-hv",
+		href: "https://github.com/santiago-hv",
+	},
 	{
 		label: "LinkedIn",
 		value: "Santiago Huapalla Villegas",

@@ -25,6 +25,13 @@ export function Header() {
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 
+	useEffect(() => {
+		document.body.style.overflow = isMenuOpen ? "hidden" : "unset";
+		return () => {
+			document.body.style.overflow = "unset";
+		};
+	}, [isMenuOpen]);
+
 	const isActive = (href) => {
 		const sectionId = href.replace("#", "");
 		return activeSection === sectionId ? "active" : "";
@@ -55,24 +62,74 @@ export function Header() {
 	};
 
 	return (
-		<header className="siteHeader">
-			<a className="brand" href="#home" aria-label="Go to home" onClick={handleNavClick}>
-				<span className="brandSymbol">&gt;_</span>
-				<span className="brandMark">My portfolio</span>
-			</a>
-			<button className="menuToggle" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
-				<span></span>
-				<span></span>
-				<span></span>
-			</button>
-			<nav className={`navLinks ${isMenuOpen ? "navLinks--open" : ""}`}>
-				<a href="#home" className={isActive("#home")} onClick={handleNavClick}>Home</a>
-				<a href="#skills" className={isActive("#skills")} onClick={handleNavClick}>Skills</a>
-				<a href="#projects" className={isActive("#projects")} onClick={handleNavClick}>Projects</a>
-			</nav>
-			<a className="button button--ghost headerAction" href="#contact" onClick={handleNavClick}>
-				Contact
-			</a>
-		</header>
+		<>
+			<div
+				className={`menuOverlay ${isMenuOpen ? "active" : ""}`}
+				onClick={() => setIsMenuOpen(false)}
+				aria-hidden="true"
+			/>
+
+			<header className="siteHeader">
+				<a
+					className="brand"
+					href="#home"
+					aria-label="Go to home"
+					onClick={handleNavClick}
+				>
+					<span className="brandSymbol">&gt;_</span>
+					<span className="brandMark">My portfolio</span>
+				</a>
+
+				<button
+					className={`menuToggle ${isMenuOpen ? "active" : ""}`}
+					onClick={() => setIsMenuOpen(!isMenuOpen)}
+					aria-label="Toggle menu"
+				>
+					<span></span>
+					<span></span>
+					<span></span>
+				</button>
+
+				<nav className={`navLinks ${isMenuOpen ? "navLinks--open" : ""}`}>
+					<a
+						href="#home"
+						className={isActive("#home")}
+						onClick={handleNavClick}
+					>
+						Home
+					</a>
+					<a
+						href="#skills"
+						className={isActive("#skills")}
+						onClick={handleNavClick}
+					>
+						Skills
+					</a>
+					<a
+						href="#projects"
+						className={isActive("#projects")}
+						onClick={handleNavClick}
+					>
+						Projects
+					</a>
+
+					<a
+						className="button button--ghost mobileContactBtn"
+						href="#contact"
+						onClick={handleNavClick}
+					>
+						Contact
+					</a>
+				</nav>
+
+				<a
+					className="button button--ghost headerAction"
+					href="#contact"
+					onClick={handleNavClick}
+				>
+					Contact
+				</a>
+			</header>
+		</>
 	);
 }
