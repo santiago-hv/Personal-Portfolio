@@ -1,16 +1,31 @@
-# React + Vite
+# 🚀 Santiago's Developer Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> A modern, fully responsive Full-Stack developer portfolio built with a sleek glassmorphism aesthetic.
 
-Currently, two official plugins are available:
+Welcome to the repository for my personal portfolio! This project showcases my technical skills, featured projects, and serves as a central hub for my professional journey as a Full-Stack Developer centered around the JavaScript ecosystem.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Check out the live site here: **[Insert Live Demo Link Here]**
 
-## React Compiler
+## ✨ Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **Modern UI/UX:** Dark theme with advanced glassmorphism effects, custom hover animations, and a polished visual hierarchy.
+* **Responsive Design:** A fluid experience across all devices, featuring a custom-built mobile side-drawer menu.
+* **Smooth Navigation:** Custom scroll-spy navigation that updates dynamically as the user explores the page.
+* **Dynamic Contact:** Integrated with EmailJS for direct, seamless communication without requiring a full backend setup.
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This project was built focusing on clean architecture and modern development practices:
+
+* **Core:** React, JavaScript (ES6+), HTML5
+* **Styling:** Custom CSS with Glassmorphism / Tailwind CSS
+* **Build Tool:** Vite
+* **Ecosystem Foundation:** Node.js
+
+## 🚀 Getting Started
+
+Want to explore the code locally? Follow these steps:
+
+1. **Clone the repository**
+   ```bash
+   git clone [https://github.com/santiago-hv/your-repo-name.git](https://github.com/santiago-hv/your-repo-name.git)
