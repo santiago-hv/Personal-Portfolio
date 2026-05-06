@@ -6,16 +6,8 @@ Welcome to the repository for my personal portfolio! This project showcases my t
 
 Check out the live site here:
 
-## ✨ Key Features
-
-* **Modern UI/UX:** Dark theme with advanced glassmorphism effects, custom hover animations, and a polished visual hierarchy.
-* **Responsive Design:** A fluid experience across all devices, featuring a custom-built mobile side-drawer menu.
-* **Smooth Navigation:** Custom scroll-spy navigation that updates dynamically as the user explores the page.
-* **Dynamic Contact:** Integrated with EmailJS for direct, seamless communication without requiring a full backend setup.
-
-
 ### 📸 Live Demo Preview
-*A quick look at the portfolio's modern interface and glassmorphism aesthetic.*
+*A quick look at the portfolio's interface.*
 
 <p align="center">
   <img src="public/portfolio_demo_preview_1.png" alt="Preview 1" width="49%" />
