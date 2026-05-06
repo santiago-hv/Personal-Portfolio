@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
+import { scrollToHashFromEvent } from "../utils/scrollTo";
 
 export function Header() {
 	const [activeSection, setActiveSection] = useState("home");
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	useEffect(() => {
+		const sections = document.querySelectorAll("section[id]");
+
 		const handleScroll = () => {
-			const sections = document.querySelectorAll("section[id]");
-			const scrollPosition = window.scrollY + 100;
+			const scrollPosition = window.scrollY + 160;
 
 			for (const section of sections) {
 				const sectionTop = section.offsetTop;
@@ -15,7 +17,10 @@ export function Header() {
 
 				if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
 					const sectionId = section.id;
-					setActiveSection(sectionId);
+
+					setActiveSection((prevSection) =>
+						prevSection !== sectionId ? sectionId : prevSection,
+					);
 					break;
 				}
 			}
@@ -37,29 +42,10 @@ export function Header() {
 		return activeSection === sectionId ? "active" : "";
 	};
 
-	const handleNavClick = (e) => {
-		const href = e.currentTarget.getAttribute("href");
-		if (href.startsWith("#")) {
-			e.preventDefault();
-			const targetId = href.replace("#", "");
-			const targetElement = document.getElementById(targetId);
-
-			if (targetElement) {
-				targetElement.style.transition = "box-shadow 0.3s ease";
-				targetElement.style.boxShadow = "0 0 0 3px rgba(201, 166, 255, 0.3)";
-
-				setTimeout(() => {
-					targetElement.style.boxShadow = "none";
-				}, 800);
-
-				targetElement.scrollIntoView({
-					behavior: "smooth",
-					block: "start",
-				});
-			}
-		}
-		setIsMenuOpen(false);
-	};
+    const handleNavClick = (e) => {
+        scrollToHashFromEvent(e);
+        setIsMenuOpen(false);
+    };
 
 	return (
 		<>
@@ -118,7 +104,7 @@ export function Header() {
 						href="#contact"
 						onClick={handleNavClick}
 					>
-						Contact
+						Contact Me
 					</a>
 				</nav>
 
@@ -127,7 +113,7 @@ export function Header() {
 					href="#contact"
 					onClick={handleNavClick}
 				>
-					Contact
+					Contact Me
 				</a>
 			</header>
 		</>

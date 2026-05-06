@@ -88,6 +88,7 @@
 	text-transform: uppercase;
 }
 .eyebrow {
+	font-size: 17px;
 	width: fit-content;
 	color: var(--accent);
 }
@@ -136,6 +137,31 @@
 	);
 	opacity: 0.75;
 	transition: opacity 0.35s;
+}
+
+/* Shared decorative orb used by multiple card types to keep styles DRY */
+.accentOrb {
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    rgba(143, 77, 255, 0.18),
+    transparent 68%
+  );
+  transition: transform 0.5s, opacity 0.5s;
+}
+
+.glassCard:hover .accentOrb,
+.cardItem:hover .accentOrb,
+.contactCard:hover .accentOrb,
+.heroCard:hover .accentOrb {
+  opacity: 0.9;
+  transform: scale(1.35) translate(-10px, 10px);
 }
 
 .glassCard:hover {

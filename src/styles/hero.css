@@ -16,29 +16,8 @@
 	position: relative;
 }
 
-.heroCard::after {
-	content: "";
-	position: absolute;
-	top: -80px;
-	right: -80px;
-	width: 220px;
-	height: 220px;
-	border-radius: 50%;
-	pointer-events: none;
-	background: radial-gradient(
-		circle,
-		rgba(143, 77, 255, 0.18),
-		transparent 68%
-	);
-	transition:
-		transform 0.5s,
-		opacity 0.5s;
-}
-
-.heroCard:hover::after {
-	opacity: 0.9;
-	transform: scale(1.35) translate(-10px, 10px);
-}
+/* Decorative orb moved to shared .accentOrb class in ui.css */
+.heroCard::after { content: none; }
 
 .heroCard--main {
 	display: flex;

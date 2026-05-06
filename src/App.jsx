@@ -1,11 +1,6 @@
-import { useState } from 'react'
+// Using automatic JSX runtime — no explicit React import required
 import './app.css'
-import {Header} from './components/Header'
-import {Hero} from './components/Hero'
-import {Skills} from './components/Skills'
-import {Projects} from './components/Projects'
-import {Contact} from './components/Contact'
-import {Footer} from './components/Footer'
+import { Header, Hero, Skills, Projects, Contact, Footer } from './components'
 
 function App() {
 	return (

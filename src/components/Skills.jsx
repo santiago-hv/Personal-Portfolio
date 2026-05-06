@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import { ChipList, GlassCard, SectionIntro, staggerContainer, itemVariants } from "./UI";
+import { GlassCard, SectionIntro, IconList } from "./UI";
+import { CardHeader } from "./CardHeader";
+import { staggerContainer, itemVariants } from "../utils/animations";
 import { skills } from "../data/portfolio";
-import { IconList } from "./UI";
 export function Skills() {
 	return (
 		<motion.section
@@ -13,26 +14,18 @@ export function Skills() {
 			variants={staggerContainer}
 		>
 			<SectionIntro
-				eyebrow="Technical Skills"
-				title="Skills organized as parts of a visual system."
-				text="A compact stack for building complete products, from a clear interface to the technical foundation behind it."
+				eyebrow="My Skills"
+				title="Modern end-to-end development."
+				text="A robust toolkit centered around the JavaScript ecosystem, bridging dynamic React interfaces with scalable Node.js foundations."
 			/>
 			<motion.div className="cardsGrid" variants={staggerContainer}>
 				{skills.map((skill) => (
 					<motion.div key={skill.title} variants={itemVariants}>
-						<GlassCard className="cardItem">
-							<div className="cardHeader">
-								<span className="cardIndex">
-									<img className="skillIcon" src={skill.icon} alt={`${skill.title} Icon`} />
-								</span>
-								<div>
-									<p className="cardKicker">Specialty</p>
-									<h3>{skill.title}</h3>
-								</div>
-							</div>
-							<p>{skill.description}</p>
-							<IconList icons={skill.icons} tags={skill.tags} />
-						</GlassCard>
+                        <GlassCard className="cardItem">
+                            <CardHeader icon={skill.icon} title={skill.title} />
+                            <p>{skill.description}</p>
+                            <IconList icons={skill.icons} tags={skill.tags} />
+                        </GlassCard>
 					</motion.div>
 				))}
 			</motion.div>

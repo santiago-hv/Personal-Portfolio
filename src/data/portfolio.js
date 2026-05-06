@@ -18,6 +18,8 @@ import sqlServerIcon from "../assets/svg/Microsoft SQL Server.svg";
 import postsgreIcon from "../assets/svg/postgresql.svg";
 import expressIcon from "../assets/svg/express.svg";
 import dockerIcon from "../assets/svg/docker.svg";
+import tailwindIcon from "../assets/svg/tailwind-css-svgrepo-com.svg";
+
 export const techStack = [
 	"React",
 	"JavaScript",
@@ -31,7 +33,8 @@ export const techStack = [
 	"SQL Server",
 	"PostgreSQL",	
 	"PHP",
-	"Docker"
+	"Docker",
+	"Tailwind CSS"
 ];
 
 export const skills = [
@@ -40,8 +43,8 @@ export const skills = [
 		icon: frontEndIcon,
 		description:
 			"Responsive interfaces focused on experience, accessibility, and visual micro-details.",
-		tags: ["React", "JavaScript", "CSS", "HTML", "Vite"],
-		icons: [reactIcon, jsIcon, cssIcon, htmlIcon, viteIcon],
+		tags: ["React", "JavaScript", "CSS", "HTML", "Vite", "Tailwind CSS"],
+		icons: [reactIcon, jsIcon, cssIcon, htmlIcon, viteIcon, tailwindIcon],
 	},
 	{
 		title: "Backend",
