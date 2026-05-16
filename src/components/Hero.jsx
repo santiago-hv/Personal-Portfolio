@@ -4,6 +4,7 @@ import { githubIcon, linkedinIcon, downloadIcon,whatsappIcon } from "../data/ico
 import { GlassCard } from "./UI";
 import { staggerContainer, itemVariants } from "../utils/animations";
 import { scrollToHashFromEvent } from "../utils/scrollTo";
+import TextType from "./TextType";
 
 const heroVariants = {
 	hidden: { opacity: 0, y: 32, filter: "blur(8px)" },
@@ -32,10 +33,21 @@ export function Hero() {
 				<motion.div variants={itemVariants}>
 					<GlassCard className="heroCard heroCard--main">
 						<span className="eyebrow">FULLSTACK DEVELOPER</span>
-						<h1>
-							{"< "}Hi, I'm <span>Santiago Villegas</span>
-							{" />"}
-						</h1>
+						<TextType
+							text={[
+								`< Hi, I'm Santiago Villegas />`
+							]}
+							as="h1"
+							typingSpeed={50}
+							pauseDuration={5000}
+							showCursor
+							cursorCharacter="|"
+							deletingSpeed={40}
+							variableSpeedEnabled={false}
+							variableSpeedMin={60}
+							variableSpeedMax={120}
+							cursorBlinkDuration={0.5}
+						/>
 						<p>
 							Full-stack engineering student specializing in the modern
 							JavaScript ecosystem. I combine a strong background in clean
@@ -83,17 +95,29 @@ export function Hero() {
 							<span>Available for work</span>
 						</div>
 					</div>
-                    <div className="socialDock" aria-label="Social links">
-                        <a href="https://github.com/santiago-hv" target="_blank" rel="noreferrer">
-                            <img src={githubIcon} alt="GitHub" />
-                        </a>
-                        <a href="https://www.linkedin.com/in/santiago-huapalla-villegas/" target="_blank" rel="noreferrer">
-                            <img src={linkedinIcon} alt="LinkedIn" />
-                        </a>
-						<a href="https://wa.me/59179342664" target="_blank" rel="noreferrer">
+					<div className="socialDock" aria-label="Social links">
+						<a
+							href="https://github.com/santiago-hv"
+							target="_blank"
+							rel="noreferrer"
+						>
+							<img src={githubIcon} alt="GitHub" />
+						</a>
+						<a
+							href="https://www.linkedin.com/in/santiago-huapalla-villegas/"
+							target="_blank"
+							rel="noreferrer"
+						>
+							<img src={linkedinIcon} alt="LinkedIn" />
+						</a>
+						<a
+							href="https://wa.me/59179342664"
+							target="_blank"
+							rel="noreferrer"
+						>
 							<img src={whatsappIcon} alt="WhatsApp" />
 						</a>
-                    </div>
+					</div>
 				</motion.div>
 			</motion.div>
 		</motion.section>
