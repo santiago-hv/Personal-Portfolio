@@ -20,8 +20,8 @@ import expressIcon from "../assets/svg/express.svg";
 import dockerIcon from "../assets/svg/docker.svg";
 import tailwindIcon from "../assets/svg/tailwind-css-svgrepo-com.svg";
 import pokedexPreview from "../assets/pokedex-preview.svg";
-import pokeapi from "../assets/projects/screenshot_3.png";
-import gameshop from "../assets/projects/screenshot_5.png";
+import pokeapi from "../assets/projects/Screenshot_3.png";
+import gameshop from "../assets/projects/Screenshot_5.png";
 
 
 export const techStack = [
