@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { scrollToHashFromEvent } from "../utils/scrollTo";
 
 export function Header() {
@@ -30,30 +31,59 @@ export function Header() {
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);	
 
-	useEffect(() => {
-		document.body.style.overflow = isMenuOpen ? "hidden" : "unset";
-		return () => {
-			document.body.style.overflow = "unset";
-		};
-	}, [isMenuOpen]);
-
 	const isActive = (href) => {
 		const sectionId = href.replace("#", "");
 		return activeSection === sectionId ? "active" : "";
 	};
 
-    const handleNavClick = (e) => {
-        scrollToHashFromEvent(e);
-        setIsMenuOpen(false);
-    };
+	const handleNavClick = (e) => {
+		scrollToHashFromEvent(e);
+		setIsMenuOpen(false);
+	};
+
+	const renderNavLinks = (className) => (
+		<nav className={className}>
+			<a href="#home" className={isActive("#home")} onClick={handleNavClick}>
+				Home
+			</a>
+			<a href="#skills" className={isActive("#skills")} onClick={handleNavClick}>
+				Skills
+			</a>
+			<a
+				href="#projects"
+				className={isActive("#projects")}
+				onClick={handleNavClick}
+			>
+				Projects
+			</a>
+
+			<a
+				className="button button--ghost mobileContactBtn"
+				href="#contact"
+				onClick={handleNavClick}
+			>
+				Contact Me
+			</a>
+		</nav>
+	);
+
+	const mobileMenu = isMenuOpen
+		? createPortal(
+			<>
+				<div
+					className="menuOverlay active"
+					onClick={() => setIsMenuOpen(false)}
+					aria-hidden="true"
+				/>
+				{renderNavLinks("navLinks navLinks--mobile navLinks--open")}
+			</>,
+			document.body,
+		)
+		: null;
 
 	return (
 		<>
-			<div
-				className={`menuOverlay ${isMenuOpen ? "active" : ""}`}
-				onClick={() => setIsMenuOpen(false)}
-				aria-hidden="true"
-			/>
+			{mobileMenu}
 
 			<header className="siteHeader">
 				<a
@@ -77,37 +107,7 @@ export function Header() {
 					<span></span>
 				</button>
 
-				<nav className={`navLinks ${isMenuOpen ? "navLinks--open" : ""}`}>
-					<a
-						href="#home"
-						className={isActive("#home")}
-						onClick={handleNavClick}
-					>
-						Home
-					</a>
-					<a
-						href="#skills"
-						className={isActive("#skills")}
-						onClick={handleNavClick}
-					>
-						Skills
-					</a>
-					<a
-						href="#projects"
-						className={isActive("#projects")}
-						onClick={handleNavClick}
-					>
-						Projects
-					</a>
-
-					<a
-						className="button button--ghost mobileContactBtn"
-						href="#contact"
-						onClick={handleNavClick}
-					>
-						Contact Me
-					</a>
-				</nav>
+				{renderNavLinks("navLinks navLinks--desktop")}
 
 				<a
 					className="button button--ghost headerAction"

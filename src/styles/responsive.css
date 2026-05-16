@@ -96,12 +96,12 @@
 		padding: 12px 14px;
 	}
 
-	.navLinks {
+	.navLinks--desktop {
 		justify-content: flex-start;
 		gap: 12px;
 	}
 
-	.navLinks a {
+	.navLinks--desktop a {
 		font-size: 0.8rem;
 		padding: 0.4rem 0.6rem;
 		white-space: nowrap;

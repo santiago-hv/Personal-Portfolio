@@ -5,12 +5,18 @@
 	align-items: center;
 	justify-content: space-between;
 	gap: 24px;
-	position: sticky;
+	position: fixed;
 	top: 0;
-	z-index: 50;
+	left: 0;
+	right: 0;
+	z-index: 70;
 	background: rgba(11, 10, 19, 0.88);
 	backdrop-filter: blur(18px);
 	border-bottom: 1px solid rgba(211, 194, 255, 0.08);
+}
+
+.appShell {
+	padding-top: 64px;
 }
 
 html {
@@ -63,6 +69,10 @@ html {
 	flex: 1;
 	justify-content: center;
 	gap: 20px;
+}
+
+.navLinks--mobile {
+	display: none;
 }
 
 .navLinks a {
@@ -172,6 +182,10 @@ section:focus,
 		flex-wrap: wrap;
 	}
 
+	.appShell {
+		padding-top: 48px;
+	}
+
 	.headerAction {
 		display: none;
 	}
@@ -181,7 +195,11 @@ section:focus,
 		z-index: 60;
 	}
 
-	.navLinks {
+	.navLinks--desktop {
+		display: none;
+	}
+
+	.navLinks--mobile {
 		display: none;
 		position: fixed;
 		top: 0;
