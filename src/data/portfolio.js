@@ -19,6 +19,10 @@ import postsgreIcon from "../assets/svg/postgresql.svg";
 import expressIcon from "../assets/svg/express.svg";
 import dockerIcon from "../assets/svg/docker.svg";
 import tailwindIcon from "../assets/svg/tailwind-css-svgrepo-com.svg";
+import pokedexPreview from "../assets/pokedex-preview.svg";
+import pokeapi from "../assets/projects/screenshot_3.png";
+import gameshop from "../assets/projects/screenshot_5.png";
+
 
 export const techStack = [
 	"React",
@@ -66,22 +70,21 @@ export const skills = [
 
 export const projects = [
 	{
-		title: "Fintech Dashboard",
+		title: "PokéDex",
 		description:
-			"Analytics dashboard for payments, metrics, and fast reading of key indicators.",
-		tags: ["React", "Charts", "Node.js", "PostgreSQL"],
+			"Pokémon search app connected to PokéAPI with a visual card for stats, type, abilities, and general details.",
+		tags: ["JavaScript", "HTML", "CSS", "PokéAPI"],
+		image: pokeapi,
+		demoUrl: "https://santiago-hv.github.io/Poke-Dex/",
+		repoUrl: "https://github.com/santiago-hv/Poke-Dex",
 	},
 	{
-		title: "E-commerce Platform",
+		title: "Game shop",
 		description:
-			"Complete storefront with catalog, cart, and a visual flow prepared for checkout.",
-		tags: ["Next.js", "Stripe", "MongoDB", "AWS"],
-	},
-	{
-		title: "Portfolio CMS",
-		description:
-			"Content system for publishing projects and keeping a portfolio alive.",
-		tags: ["TypeScript", "GraphQL", "Prisma", "Vercel"],
+			"Platform for selling video games with a modern UI and seamless checkout experience.",
+		tags: ["Python", "QtDesigner"],
+		image: gameshop,
+		repoUrl: "https://github.com/santiago-hv/TiendaJuegos",
 	},
 ];
 

@@ -22,11 +22,38 @@ export function Projects() {
 			<motion.div className="cardsGrid" variants={staggerContainer}>
 				{projects.map((project, index) => (
 					<motion.div key={project.title} variants={itemVariants}>
-                        <GlassCard className="cardItem">
-                            <CardHeader index={`0${index + 1}`} title={project.title} isProject />
-                            <p>{project.description}</p>
-                            <ChipList items={project.tags} />
-                        </GlassCard>
+						<GlassCard className={`cardItem ${project.image ? "projectCard" : ""}`}>
+							{project.image ? (
+								<a
+									className="projectPreviewLink"
+									href={project.demoUrl}
+									target="_blank"
+									rel="noreferrer"
+									aria-label={`Open ${project.title} live demo`}
+								>
+									<img src={project.image} alt={`${project.title} preview`} />
+								</a>
+							) : null}
+							<div className="projectContent">
+								<CardHeader index={`0${index + 1}`} title={project.title} isProject />
+								<p>{project.description}</p>
+								<ChipList items={project.tags} />
+								{project.demoUrl || project.repoUrl ? (
+									<div className="projectLinks">
+										{project.demoUrl ? (
+											<a href={project.demoUrl} target="_blank" rel="noreferrer">
+												Live Demo
+											</a>
+										) : null}
+										{project.repoUrl ? (
+											<a href={project.repoUrl} target="_blank" rel="noreferrer">
+												GitHub Repo
+											</a>
+										) : null}
+									</div>
+								) : null}
+							</div>
+						</GlassCard>
 					</motion.div>
 				))}
 			</motion.div>
