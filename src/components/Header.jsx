@@ -28,7 +28,7 @@ export function Header() {
 
 		window.addEventListener("scroll", handleScroll);
 		return () => window.removeEventListener("scroll", handleScroll);
-	}, []);
+	}, []);	
 
 	useEffect(() => {
 		document.body.style.overflow = isMenuOpen ? "hidden" : "unset";
