@@ -70,6 +70,7 @@ export function Header() {
 					className={`menuToggle ${isMenuOpen ? "active" : ""}`}
 					onClick={() => setIsMenuOpen(!isMenuOpen)}
 					aria-label="Toggle menu"
+					aria-expanded={isMenuOpen}
 				>
 					<span></span>
 					<span></span>

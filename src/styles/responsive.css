@@ -43,6 +43,15 @@
 		gap: 18px;
 	}
 
+	.projectCard {
+		grid-column: auto;
+	}
+
+	.projectPreviewLink,
+	.projectPreviewLink img {
+		min-height: 220px;
+	}
+
 	.cardItem {
 		min-height: auto;
 		padding: 24px;
