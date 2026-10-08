@@ -6,9 +6,6 @@
 	position: relative;
 }
 
-/* Decorative orb moved to shared .accentOrb class in ui.css */
-.contactCard::after { content: none; }
-
 .contactCopy,
 .contactForm {
 	position: relative;

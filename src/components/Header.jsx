@@ -8,8 +8,10 @@ export function Header() {
 
 	useEffect(() => {
 		const sections = document.querySelectorAll("section[id]");
+		let frame = 0;
 
-		const handleScroll = () => {
+		const updateActiveSection = () => {
+			frame = 0;
 			const scrollPosition = window.scrollY + 160;
 
 			for (const section of sections) {
@@ -27,8 +29,15 @@ export function Header() {
 			}
 		};
 
-		window.addEventListener("scroll", handleScroll);
-		return () => window.removeEventListener("scroll", handleScroll);
+		const handleScroll = () => {
+			if (!frame) frame = requestAnimationFrame(updateActiveSection);
+		};
+
+		window.addEventListener("scroll", handleScroll, { passive: true });
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+			cancelAnimationFrame(frame);
+		};
 	}, []);	
 
 	const isActive = (href) => {

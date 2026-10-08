@@ -30,10 +30,6 @@
 	border-radius: 18px;
 	background: rgba(201, 166, 255, 0.1);
 	border: 1px solid rgba(201, 166, 255, 0.24);
-	color: var(--accent);
-	font-family: "Playfair Display", Georgia, serif;
-	font-size: 1.3rem;
-	font-weight: 800;
 	flex-shrink: 0;
 	transition:
 		transform 0.3s,
@@ -152,6 +148,3 @@
 	opacity: 1;
 	transform: translateX(8px);
 }
-
-/* Decorative orb moved to shared .accentOrb class in ui.css */
-.cardItem::after { content: none; }

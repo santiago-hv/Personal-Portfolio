@@ -10,8 +10,8 @@ Check out the live site here:
 *A quick look at the portfolio's interface.*
 
 <p align="center">
-  <img src="public/portfolio_demo_preview_1.png" alt="Preview 1" width="49%" />
-  <img src="public/portfolio_demo_preview_2.png" alt="preview 2" width="49%" />
+  <img src="docs/portfolio_demo_preview_1.png" alt="Preview 1" width="49%" />
+  <img src="docs/portfolio_demo_preview_2.png" alt="preview 2" width="49%" />
 </p>
 
 ## 🛠️ Tech Stack

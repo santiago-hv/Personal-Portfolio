@@ -19,27 +19,9 @@ import postsgreIcon from "../assets/svg/postgresql.svg";
 import expressIcon from "../assets/svg/express.svg";
 import dockerIcon from "../assets/svg/docker.svg";
 import tailwindIcon from "../assets/svg/tailwind-css-svgrepo-com.svg";
-import pokedexPreview from "../assets/pokedex-preview.svg";
-import pokeapi from "../assets/projects/Screenshot_3.png";
-import gameshop from "../assets/projects/Screenshot_5.png";
+import pokeapi from "../assets/projects/pokedex.webp";
+import gameshop from "../assets/projects/gameshop.webp";
 
-
-export const techStack = [
-	"React",
-	"JavaScript",
-	"Node.js",
-	"CSS",
-	"Vite",
-	"Git",
-	"Python",
-	"Java",
-	"Laravel",
-	"SQL Server",
-	"PostgreSQL",	
-	"PHP",
-	"Docker",
-	"Tailwind CSS"
-];
 
 export const skills = [
 	{
@@ -75,6 +57,8 @@ export const projects = [
 			"Pokémon search app connected to PokéAPI with a visual card for stats, type, abilities, and general details.",
 		tags: ["JavaScript", "HTML", "CSS", "PokéAPI"],
 		image: pokeapi,
+		imageWidth: 683,
+		imageHeight: 943,
 		demoUrl: "https://santiago-hv.github.io/Poke-Dex/",
 		repoUrl: "https://github.com/santiago-hv/Poke-Dex",
 	},
@@ -84,6 +68,8 @@ export const projects = [
 			"Platform for selling video games with a modern UI and seamless checkout experience.",
 		tags: ["Python", "QtDesigner"],
 		image: gameshop,
+		imageWidth: 1001,
+		imageHeight: 630,
 		repoUrl: "https://github.com/santiago-hv/TiendaJuegos",
 	},
 ];

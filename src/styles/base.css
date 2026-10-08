@@ -3,6 +3,7 @@
 	font-family: "Outfit", system-ui, sans-serif;
 	--cream: #f4efff;
 	--muted: #c6bfd7;
+	--faint: #9a93ad;
 	--accent: #c9a6ff;
 	--radius-lg: 34px;
 }
@@ -39,18 +40,24 @@ body {
 	overflow-x: hidden;
 }
 
-body::before {
-	content: "";
+.gridBackdrop {
 	position: fixed;
 	inset: 0;
+	overflow: hidden;
 	pointer-events: none;
+	mask-image: radial-gradient(circle at center, #000 0%, transparent 78%);
+	z-index: -1;
+}
+
+/* Oversized by one drift step so the grid can slide with a transform. */
+.gridBackdrop__grid {
+	position: absolute;
+	inset: -68px 0 0 -34px;
 	background-image:
 		linear-gradient(rgba(211, 194, 255, 0.035) 1px, transparent 1px),
 		linear-gradient(90deg, rgba(211, 194, 255, 0.025) 1px, transparent 1px);
 	background-size: 34px 34px;
-	mask-image: radial-gradient(circle at center, #000 0%, transparent 78%);
 	animation: gridDrift 28s linear infinite;
-	z-index: -1;
 }
 
 a,
@@ -95,10 +102,10 @@ main {
 
 @keyframes gridDrift {
 	from {
-		background-position: 0 0;
+		transform: translate3d(0, 0, 0);
 	}
 	to {
-		background-position: 34px 68px;
+		transform: translate3d(34px, 68px, 0);
 	}
 }
 

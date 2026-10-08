@@ -4,11 +4,9 @@ import {
 	useEffect,
 	useRef,
 	useState,
-	createElement,
 	useMemo,
 	useCallback,
 } from "react";
-import { gsap } from "gsap";
 import "../styles/textType.css";
 
 const TextType = ({
@@ -37,7 +35,6 @@ const TextType = ({
 	const [isDeleting, setIsDeleting] = useState(false);
 	const [currentTextIndex, setCurrentTextIndex] = useState(0);
 	const [isVisible, setIsVisible] = useState(!startOnVisible);
-	const cursorRef = useRef(null);
 	const containerRef = useRef(null);
 
 	const textArray = useMemo(
@@ -73,19 +70,6 @@ const TextType = ({
 		observer.observe(containerRef.current);
 		return () => observer.disconnect();
 	}, [startOnVisible]);
-
-	useEffect(() => {
-		if (showCursor && cursorRef.current) {
-			gsap.set(cursorRef.current, { opacity: 1 });
-			gsap.to(cursorRef.current, {
-				opacity: 0,
-				duration: cursorBlinkDuration,
-				repeat: -1,
-				yoyo: true,
-				ease: "power2.inOut",
-			});
-		}
-	}, [showCursor, cursorBlinkDuration]);
 
 	useEffect(() => {
 		if (!isVisible) return;
@@ -165,27 +149,27 @@ const TextType = ({
 		hideCursorWhileTyping &&
 		(currentCharIndex < textArray[currentTextIndex].length || isDeleting);
 
-	return createElement(
-		Component,
-		{
-			ref: containerRef,
-			className: `text-type ${className}`,
-			...props,
-		},
-		<span
-			className="text-type__content"
-			style={{ color: getCurrentTextColor() || "inherit" }}
+	return (
+		<Component
+			ref={containerRef}
+			className={`text-type ${className}`}
+			{...props}
 		>
-			{displayedText}
-		</span>,
-		showCursor && (
 			<span
-				ref={cursorRef}
-				className={`text-type__cursor ${cursorClassName} ${shouldHideCursor ? "text-type__cursor--hidden" : ""}`}
+				className="text-type__content"
+				style={{ color: getCurrentTextColor() || "inherit" }}
 			>
-				{cursorCharacter}
+				{displayedText}
 			</span>
-		),
+			{showCursor && (
+				<span
+					className={`text-type__cursor ${cursorClassName} ${shouldHideCursor ? "text-type__cursor--hidden" : ""}`}
+					style={{ "--cursor-blink": `${cursorBlinkDuration}s` }}
+				>
+					{cursorCharacter}
+				</span>
+			)}
+		</Component>
 	);
 };
 

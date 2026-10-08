@@ -1,5 +1,4 @@
-import { motion } from "framer-motion";
-import { sectionVariants, titleVariants } from "../utils/animations";
+import { revealDelay } from "../utils/animations";
 
 export function GlassCard({ children, className = "", as: Tag = "article" }) {
     // Render a decorative orb element for shared styling. Keeping layout
@@ -16,7 +15,10 @@ export function ChipList({ items, className = "", }) {
 	return (
 		<div className={`chipList ${className}`.trim()}>
 			{items.map((item) => (
-				<span className="chip" key={item}>{item}</span>
+				<span className="chip" key={item}>
+					<span aria-hidden className="chipDot" />
+					{item}
+				</span>
 			))}
 		</div>
 	);
@@ -36,10 +38,10 @@ export function IconList({ icons, className = "", tags }) {
 
 export function SectionIntro({ eyebrow, title, text }) {
     return (
-        <motion.div className="sectionIntro" variants={sectionVariants}>
+        <div className="sectionIntro reveal reveal--intro" style={revealDelay()}>
             <p className="eyebrow">{eyebrow}</p>
-            <motion.h2 variants={titleVariants}>{title}</motion.h2>
+            <h2 className="reveal reveal--title" style={revealDelay()}>{title}</h2>
             {text ? <p className="sectionText">{text}</p> : null}
-        </motion.div>
+        </div>
     );
 }

@@ -56,7 +56,6 @@
 	background: transparent;
 	color: var(--cream);
 	border-color: rgba(211, 194, 255, 0.22);
-	backdrop-filter: blur(14px);
 }
 .button--secondary:hover {
 	background: rgba(201, 166, 255, 0.08);
@@ -116,8 +115,7 @@
 	box-shadow:
 		0 24px 80px rgba(3, 0, 12, 0.5),
 		inset 0 1px 0 rgba(255, 255, 255, 0.08);
-	backdrop-filter: blur(22px) saturate(135%);
-	animation: borderGlow 7s ease-in-out infinite;
+	isolation: isolate;
 	transition:
 		transform 0.35s,
 		border-color 0.35s,
@@ -137,6 +135,42 @@
 	);
 	opacity: 0.75;
 	transition: opacity 0.35s;
+}
+
+/* Pulsing glow. Lives on the card wrapper so the card overflow does not clip
+   it, and only animates opacity. */
+.glassWrap {
+	position: relative;
+	isolation: isolate;
+	--card-radius: var(--radius-lg);
+}
+
+.glassWrap::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	pointer-events: none;
+	border-radius: var(--card-radius);
+	box-shadow: 0 0 42px rgba(151, 88, 255, 0.14);
+	opacity: 0;
+	animation: borderGlow 7s step-end infinite;
+	transition: transform 0.35s;
+}
+
+/* Brightens the top highlight of the card in step with the glow. */
+.glassCard::after {
+	content: "";
+	position: absolute;
+	inset: 0 0 auto;
+	height: 40px;
+	pointer-events: none;
+	border-radius: inherit;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.0435);
+	opacity: 0;
+	animation: borderGlow 7s step-end infinite;
 }
 
 /* Shared decorative orb used by multiple card types to keep styles DRY */
@@ -168,9 +202,11 @@
 	transform: perspective(900px) translateY(-8px) rotateX(1.2deg)
 		rotateY(-1.2deg);
 	border-color: rgba(145, 104, 255, 0.58);
-	box-shadow:
-		0 30px 90px rgba(3, 0, 12, 0.6),
-		0 0 54px rgba(151, 88, 255, 0.14);
+}
+
+.glassWrap:has(> .glassCard:hover)::after {
+	transform: perspective(900px) translateY(-8px) rotateX(1.2deg)
+		rotateY(-1.2deg);
 }
 
 .iconList {
@@ -193,7 +229,6 @@
 
 	background: rgba(255, 255, 255, 0.03);
 	border: 1px solid rgba(218, 190, 255, 0.18);
-	backdrop-filter: blur(4px);
 
 	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 	position: relative;
@@ -269,6 +304,7 @@
 	color: var(--cream);
 	font-size: 0.82rem;
 	font-weight: 600;
+	isolation: isolate;
 	transition:
 		transform 0.25s,
 		background 0.25s,
@@ -280,41 +316,78 @@
 	transform: translateY(-3px);
 	box-shadow: 0 6px 12px rgba(201, 166, 255, 0.18);
 }
-.chip::before {
-	content: "";
-	width: 6px;
-	height: 6px;
+/* Pulsing dot: the ring and the halo are separate layers that only animate
+   transform and opacity. --dot-size is the diameter in px, unitless. */
+.chipDot {
+	--dot-size: 6;
+	--dot-period: 2.7s;
+}
+
+.chipDot,
+.statusDot {
+	position: relative;
+	width: calc(var(--dot-size) * 1px);
+	height: calc(var(--dot-size) * 1px);
 	border-radius: 50%;
 	background: var(--accent);
-	box-shadow: 0 0 16px rgba(183, 124, 255, 0.9);
-	animation: pulseDot 2.7s ease-in-out infinite;
+}
+
+.chipDot::before,
+.chipDot::after,
+.statusDot::before,
+.statusDot::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	border-radius: 50%;
+	pointer-events: none;
+}
+
+.chipDot::before,
+.statusDot::before {
+	background: rgba(201, 166, 255, 0.55);
+	animation: dotRing var(--dot-period) ease-in-out infinite;
+}
+
+.chipDot::after,
+.statusDot::after {
+	box-shadow: 0 0 18px var(--accent);
+	animation: dotHalo var(--dot-period) ease-in-out infinite;
 }
 
 @keyframes borderGlow {
 	0%,
-	100% {
-		box-shadow:
-			0 24px 80px rgba(3, 0, 12, 0.5),
-			inset 0 1px 0 rgba(255, 255, 255, 0.08);
+	75% {
+		opacity: 0;
 	}
-	50% {
-		box-shadow:
-			0 24px 80px rgba(3, 0, 12, 0.5),
-			0 0 42px rgba(151, 88, 255, 0.14),
-			inset 0 1px 0 rgba(255, 255, 255, 0.12);
+	25% {
+		opacity: 1;
 	}
 }
 
-@keyframes pulseDot {
+/* Grows the ring 8px past the dot while it fades out. */
+@keyframes dotRing {
 	0%,
 	100% {
-		box-shadow:
-			0 0 0 0 rgba(201, 166, 255, 0.55),
-			0 0 18px var(--accent);
+		transform: scale(1);
+		opacity: 1;
 	}
 	50% {
-		box-shadow:
-			0 0 0 8px rgba(201, 166, 255, 0),
-			0 0 26px var(--accent);
+		transform: scale(calc((var(--dot-size) + 16) / var(--dot-size)));
+		opacity: 0;
+	}
+}
+
+/* Equivalent to widening the halo blur from 18px to 26px. */
+@keyframes dotHalo {
+	0%,
+	100% {
+		transform: scale(1);
+		opacity: 1;
+	}
+	50% {
+		transform: scale(1.4444);
+		opacity: 0.479;
 	}
 }

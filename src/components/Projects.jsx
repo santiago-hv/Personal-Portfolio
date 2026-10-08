@@ -1,27 +1,29 @@
-import { motion } from "framer-motion";
 import { ChipList, GlassCard, SectionIntro } from "./UI";
 import { CardHeader } from "./CardHeader";
-import { staggerContainer, itemVariants } from "../utils/animations";
+import { revealDelay, useInView } from "../utils/animations";
 import { projects } from "../data/portfolio";
 
 export function Projects() {
+	const [sectionRef, inView] = useInView();
+
 	return (
-		<motion.section
+		<section
+			ref={sectionRef}
 			id="projects"
-			className="sectionBlock"
-			initial="hidden"
-			whileInView="visible"
-			viewport={{ once: true, margin: "-100px" }}
-			variants={staggerContainer}
+			className={`sectionBlock ${inView ? "is-visible" : ""}`.trim()}
 		>
 			<SectionIntro
 				eyebrow="My Projects"
 				title="Functional and scalable solutions."
 				text="A selection of full-stack projects showcasing problem-solving, clean architecture, and intuitive user experiences."
 			/>
-			<motion.div className="cardsGrid" variants={staggerContainer}>
+			<div className="cardsGrid">
 				{projects.map((project, index) => (
-					<motion.div key={project.title} variants={itemVariants}>
+					<div
+						key={project.title}
+						className="reveal reveal--item glassWrap"
+						style={revealDelay(index, 0.35)}
+					>
 						<GlassCard className={`cardItem ${project.image ? "projectCard" : ""}`}>
 							{project.image ? (
 								<a
@@ -31,7 +33,13 @@ export function Projects() {
 									rel="noreferrer"
 									aria-label={`Open ${project.title} live demo`}
 								>
-									<img src={project.image} alt={`${project.title} preview`} />
+									<img
+										src={project.image}
+										alt={`${project.title} preview`}
+										width={project.imageWidth}
+										height={project.imageHeight}
+										loading="lazy"
+									/>
 								</a>
 							) : null}
 							<div className="projectContent">
@@ -54,9 +62,9 @@ export function Projects() {
 								) : null}
 							</div>
 						</GlassCard>
-					</motion.div>
+					</div>
 				))}
-			</motion.div>
-		</motion.section>
+			</div>
+		</section>
 	);
 }

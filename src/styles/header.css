@@ -19,16 +19,6 @@
 	padding-top: 64px;
 }
 
-html {
-	scroll-behavior: auto;
-}
-
-@media (prefers-reduced-motion: reduce) {
-	html {
-		scroll-behavior: auto;
-	}
-}
-
 .brand {
 	display: flex;
 	align-items: center;

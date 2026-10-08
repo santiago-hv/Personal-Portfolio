@@ -6,11 +6,6 @@ export function scrollToHashFromEvent(e) {
   const targetElement = document.getElementById(targetId);
 
   if (targetElement) {
-    targetElement.style.transition = "box-shadow 0.3s ease";
-    setTimeout(() => {
-      targetElement.style.boxShadow = "none";
-    }, 800);
-
     targetElement.scrollIntoView({
       behavior: "smooth",
       block: "start",

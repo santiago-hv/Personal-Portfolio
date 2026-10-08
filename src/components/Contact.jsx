@@ -1,13 +1,12 @@
 import { useRef, useState } from "react";
-import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
 import { GlassCard, SectionIntro } from "./UI";
-import { staggerContainer, itemVariants } from "../utils/animations";
+import { revealDelay, useInView } from "../utils/animations";
 import { contactLinks } from "../data/portfolio";
 import { EMAIL_SERVICE_ID, EMAIL_TEMPLATE_ID, EMAIL_PUBLIC_KEY } from "../config/email";
 
 export function Contact() {
 	const formRef = useRef();
+	const [sectionRef, inView] = useInView();
 	const [status, setStatus] = useState("idle");
 	const [statusMessage, setStatusMessage] = useState("");
 
@@ -17,6 +16,7 @@ export function Contact() {
 		setStatusMessage("");
 
 		try {
+            const { default: emailjs } = await import("@emailjs/browser");
             await emailjs.sendForm(
                 EMAIL_SERVICE_ID,
                 EMAIL_TEMPLATE_ID,
@@ -34,15 +34,15 @@ export function Contact() {
 		}
 	};
 	return (
-		<motion.section
+		<section
+			ref={sectionRef}
 			id="contact"
-			className="sectionBlock contactSection"
-			initial="hidden"
-			whileInView="visible"
-			viewport={{ once: true, margin: "-100px" }}
-			variants={staggerContainer}
+			className={`sectionBlock contactSection ${inView ? "is-visible" : ""}`.trim()}
 		>
-			<motion.div variants={itemVariants}>
+			<div
+				className="reveal reveal--item glassWrap glassWrap--contact"
+				style={revealDelay()}
+			>
 				<GlassCard className="contactCard" as="div">
 					<div className="contactCopy">
 						<SectionIntro
@@ -121,7 +121,7 @@ export function Contact() {
 						)}
 					</form>
 				</GlassCard>
-			</motion.div>
-		</motion.section>
+			</div>
+		</section>
 	);
 }

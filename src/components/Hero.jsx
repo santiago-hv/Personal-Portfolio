@@ -1,36 +1,21 @@
-import { motion } from "framer-motion";
-import profileImage from "../assets/20260415_155653.jpg";
+import profileImage from "../assets/profile.webp";
 import { githubIcon, linkedinIcon, downloadIcon,whatsappIcon } from "../data/icons";
 import { GlassCard } from "./UI";
-import { staggerContainer, itemVariants } from "../utils/animations";
+import { revealDelay } from "../utils/animations";
 import { scrollToHashFromEvent } from "../utils/scrollTo";
 import TextType from "./TextType";
 
-const heroVariants = {
-	hidden: { opacity: 0, y: 32, filter: "blur(8px)" },
-	visible: {
-		opacity: 1,
-		y: 0,
-		filter: "blur(0px)",
-		transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
-	},
-};
+const cvUrl = `${import.meta.env.BASE_URL}CV_Santiago%20Vladimir%20Huapalla%20Villegas.pdf`;
 
 export function Hero() {
     const handleHeroClick = scrollToHashFromEvent;
 
 	return (
-		<motion.section
-			id="home"
-			className="heroSection"
-			initial="hidden"
-			animate="visible"
-			variants={heroVariants}
-		>
+		<section id="home" className="heroSection reveal reveal--hero is-visible">
 			<div className="orb orb--one" />
 			<div className="orb orb--two" />
-			<motion.div className="heroGrid" variants={staggerContainer}>
-				<motion.div variants={itemVariants}>
+			<div className="heroGrid">
+				<div className="reveal reveal--item glassWrap" style={revealDelay(0)}>
 					<GlassCard className="heroCard heroCard--main">
 						<span className="eyebrow">FULLSTACK DEVELOPER</span>
 						<TextType
@@ -43,9 +28,6 @@ export function Hero() {
 							showCursor
 							cursorCharacter="|"
 							deletingSpeed={40}
-							variableSpeedEnabled={false}
-							variableSpeedMin={60}
-							variableSpeedMax={120}
 							cursorBlinkDuration={0.5}
 						/>
 						<p>
@@ -71,7 +53,7 @@ export function Hero() {
 							</a>
 							<a
 								className="button button--secondary cvButton"
-								href="public\CV_Santiago Vladimir Huapalla Villegas.pdf"
+								href={cvUrl}
 								target="_blank"
 								rel="noopener noreferrer"
 							>
@@ -80,13 +62,16 @@ export function Hero() {
 							</a>
 						</div>
 					</GlassCard>
-				</motion.div>
+				</div>
 
-				<motion.div variants={itemVariants}>
+				<div className="reveal reveal--item heroProfile" style={revealDelay(1)}>
 					<img
 						className="personalImg"
 						src={profileImage}
 						alt="Santiago Villegas"
+						width={709}
+						height={945}
+						fetchPriority="high"
 					/>
 					<div className="profileStatus">
 						<span className="statusDot" />
@@ -118,8 +103,8 @@ export function Hero() {
 							<img src={whatsappIcon} alt="WhatsApp" />
 						</a>
 					</div>
-				</motion.div>
-			</motion.div>
-		</motion.section>
+				</div>
+			</div>
+		</section>
 	);
 }

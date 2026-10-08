@@ -16,28 +16,11 @@
 	position: relative;
 }
 
-/* Decorative orb moved to shared .accentOrb class in ui.css */
-.heroCard::after { content: none; }
-
 .heroCard--main {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	gap: 30px;
-}
-
-.heroCard--profile {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 0;
-	background:
-		linear-gradient(180deg, rgba(12, 12, 18, 0.94), rgba(18, 16, 27, 0.92)),
-		radial-gradient(
-			circle at 50% 20%,
-			rgba(117, 90, 185, 0.18),
-			transparent 48%
-		);
 }
 
 .heroCard h1,
@@ -111,12 +94,12 @@
 }
 
 .statusDot {
-	width: 8px;
-	height: 8px;
-	border-radius: 50%;
-	background: var(--accent);
-	box-shadow: 0 0 18px var(--accent);
-	animation: pulseDot 2.2s ease-in-out infinite;
+	--dot-size: 8;
+	--dot-period: 2.2s;
+}
+
+.heroProfile {
+	position: relative;
 }
 
 .socialDock {

@@ -124,8 +124,8 @@
 		border-radius: 24px;
 	}
 
-	.heroCard--profile {
-		padding: 0;
+	.glassWrap {
+		--card-radius: 24px;
 	}
 
 	.profileStatus {
@@ -137,8 +137,7 @@
 	}
 
 	.statusDot {
-		width: 6px;
-		height: 6px;
+		--dot-size: 6;
 	}
 
 	.socialDock {
@@ -177,9 +176,8 @@
 		padding: 0.5rem 0.7rem;
 	}
 
-	.chip::before {
-		width: 5px;
-		height: 5px;
+	.chipDot {
+		--dot-size: 5;
 	}
 
 	.cardItem h3,
@@ -190,7 +188,6 @@
 	.cardIndex {
 		width: 44px;
 		height: 44px;
-		font-size: 1.1rem;
 	}
 
 	.contactForm {
@@ -232,6 +229,10 @@
 		border-radius: 20px;
 	}
 
+	.glassWrap:not(.glassWrap--contact) {
+		--card-radius: 20px;
+	}
+
 	.chip {
 		font-size: 0.72rem;
 		padding: 0.45rem 0.6rem;
@@ -266,7 +267,22 @@
 	}
 
 	.orb,
-	.glassCard {
+	.glassWrap::after,
+	.glassCard::after,
+	.chipDot::before,
+	.chipDot::after,
+	.statusDot::before,
+	.statusDot::after {
 		animation: none;
+	}
+
+	.chipDot::after {
+		box-shadow: 0 0 16px rgba(183, 124, 255, 0.9);
+	}
+
+	.glassCard:hover {
+		box-shadow:
+			0 30px 90px rgba(3, 0, 12, 0.6),
+			0 0 54px rgba(151, 88, 255, 0.14);
 	}
 }
