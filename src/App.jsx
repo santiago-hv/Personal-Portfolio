@@ -5,9 +5,6 @@ import { Header, Hero, Skills, Projects, Contact, Footer } from './components'
 function App() {
 	return (
 		<div className="appShell">
-			<div className="gridBackdrop" aria-hidden="true">
-				<div className="gridBackdrop__grid" />
-			</div>
 			<Header />
 			<main>
 				<Hero />

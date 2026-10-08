@@ -1,17 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "preact/hooks";
 
-const DELAY_CHILDREN = 0.2;
-const STAGGER_CHILDREN = 0.15;
+const STAGGER_CHILDREN = 0.06;
 
-// Inline style that delays a .reveal element. `index` is its position among
-// its staggered siblings, `base` is when their container starts.
-export function revealDelay(index = 0, base = 0) {
-	const delay = base + DELAY_CHILDREN + index * STAGGER_CHILDREN;
-	return { "--reveal-delay": `${delay.toFixed(2)}s` };
+// Inline style that delays a .reveal element by its position among its
+// staggered siblings.
+export function revealDelay(index = 0) {
+	return { "--reveal-delay": `${(index * STAGGER_CHILDREN).toFixed(2)}s` };
 }
 
 // Turns true once the element scrolls into view, and stays true.
-export function useInView(rootMargin = "-100px") {
+export function useInView(rootMargin = "-60px") {
 	const ref = useRef(null);
 	const [inView, setInView] = useState(false);
 

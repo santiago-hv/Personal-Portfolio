@@ -4,18 +4,15 @@
 }
 
 .text-type__cursor {
-  margin-left: 0.25rem;
-  display: inline-block;
-  opacity: 1;
-  animation: cursorBlink var(--cursor-blink, 0.5s) cubic-bezier(0.645, 0.045, 0.355, 1) infinite alternate;
+  animation: cursorBlink 1s steps(1) infinite;
+}
+
+.text-type__rest {
+  visibility: hidden;
 }
 
 @keyframes cursorBlink {
-  to {
+  50% {
     opacity: 0;
   }
-}
-
-.text-type__cursor--hidden {
-  display: none;
 }

@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { createPortal } from "react-dom";
+import { useState, useEffect } from "preact/hooks";
 import { scrollToHashFromEvent } from "../utils/scrollTo";
 
 export function Header() {
@@ -76,25 +75,24 @@ export function Header() {
 		</nav>
 	);
 
-	const mobileMenu = isMenuOpen
-		? createPortal(
-			<>
-				<div
-					className="menuOverlay active"
-					onClick={() => setIsMenuOpen(false)}
-					aria-hidden="true"
-				/>
-				{renderNavLinks("navLinks navLinks--mobile navLinks--open")}
-			</>,
-			document.body,
-		)
-		: null;
+	// The header has no filter or transform, so these fixed-position elements
+	// can live inside it and still cover the viewport.
+	const mobileMenu = isMenuOpen ? (
+		<>
+			<div
+				className="menuOverlay active"
+				onClick={() => setIsMenuOpen(false)}
+				aria-hidden="true"
+			/>
+			{renderNavLinks("navLinks navLinks--mobile navLinks--open")}
+		</>
+	) : null;
 
 	return (
 		<>
-			{mobileMenu}
-
 			<header className="siteHeader">
+				{mobileMenu}
+
 				<a
 					className="brand"
 					href="#home"

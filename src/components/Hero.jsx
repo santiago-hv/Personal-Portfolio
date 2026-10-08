@@ -1,7 +1,6 @@
 import profileImage from "../assets/profile.webp";
 import { githubIcon, linkedinIcon, downloadIcon,whatsappIcon } from "../data/icons";
 import { GlassCard } from "./UI";
-import { revealDelay } from "../utils/animations";
 import { scrollToHashFromEvent } from "../utils/scrollTo";
 import TextType from "./TextType";
 
@@ -11,24 +10,17 @@ export function Hero() {
     const handleHeroClick = scrollToHashFromEvent;
 
 	return (
-		<section id="home" className="heroSection reveal reveal--hero is-visible">
+		<section id="home" className="heroSection">
 			<div className="orb orb--one" />
 			<div className="orb orb--two" />
 			<div className="heroGrid">
-				<div className="reveal reveal--item glassWrap" style={revealDelay(0)}>
+				<div>
 					<GlassCard className="heroCard heroCard--main">
 						<span className="eyebrow">FULLSTACK DEVELOPER</span>
 						<TextType
-							text={[
-								`< Hi, I'm Santiago Villegas />`
-							]}
+							text="< Hi, I'm Santiago Villegas />"
 							as="h1"
 							typingSpeed={50}
-							pauseDuration={5000}
-							showCursor
-							cursorCharacter="|"
-							deletingSpeed={40}
-							cursorBlinkDuration={0.5}
 						/>
 						<p>
 							Full-stack engineering student specializing in the modern
@@ -64,14 +56,15 @@ export function Hero() {
 					</GlassCard>
 				</div>
 
-				<div className="reveal reveal--item heroProfile" style={revealDelay(1)}>
+				<div className="heroProfile">
 					<img
 						className="personalImg"
 						src={profileImage}
 						alt="Santiago Villegas"
 						width={709}
 						height={945}
-						fetchPriority="high"
+						fetchpriority="high"
+						decoding="async"
 					/>
 					<div className="profileStatus">
 						<span className="statusDot" />

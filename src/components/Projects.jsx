@@ -21,8 +21,8 @@ export function Projects() {
 				{projects.map((project, index) => (
 					<div
 						key={project.title}
-						className="reveal reveal--item glassWrap"
-						style={revealDelay(index, 0.35)}
+						className="reveal"
+						style={revealDelay(index + 1)}
 					>
 						<GlassCard className={`cardItem ${project.image ? "projectCard" : ""}`}>
 							{project.image ? (
@@ -39,6 +39,7 @@ export function Projects() {
 										width={project.imageWidth}
 										height={project.imageHeight}
 										loading="lazy"
+										decoding="async"
 									/>
 								</a>
 							) : null}

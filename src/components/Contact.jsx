@@ -1,6 +1,6 @@
-import { useRef, useState } from "react";
+import { useRef, useState } from "preact/hooks";
 import { GlassCard, SectionIntro } from "./UI";
-import { revealDelay, useInView } from "../utils/animations";
+import { useInView } from "../utils/animations";
 import { contactLinks } from "../data/portfolio";
 import { EMAIL_SERVICE_ID, EMAIL_TEMPLATE_ID, EMAIL_PUBLIC_KEY } from "../config/email";
 
@@ -39,10 +39,7 @@ export function Contact() {
 			id="contact"
 			className={`sectionBlock contactSection ${inView ? "is-visible" : ""}`.trim()}
 		>
-			<div
-				className="reveal reveal--item glassWrap glassWrap--contact"
-				style={revealDelay()}
-			>
+			<div className="reveal">
 				<GlassCard className="contactCard" as="div">
 					<div className="contactCopy">
 						<SectionIntro
