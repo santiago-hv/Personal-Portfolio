@@ -9,14 +9,37 @@
 	font-weight: 800;
 	letter-spacing: 0.06em;
 	text-decoration: none;
+	position: relative;
+	overflow: hidden;
 	transition:
-		transform 0.2s,
-		background-color 0.2s,
-		border-color 0.2s;
+		transform 0.25s,
+		box-shadow 0.25s,
+		border-color 0.25s,
+		letter-spacing 0.25s;
+}
+
+/* Shine that sweeps across on hover. Moved with a transform so the sweep
+   never leaves the compositor. */
+.button::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(255, 255, 255, 0.35),
+		transparent
+	);
+	transform: translateX(-100%);
+	transition: transform 0.5s;
 }
 
 .button:hover {
-	transform: translateY(-2px);
+	letter-spacing: 0.09em;
+	transform: translateY(-3px) scale(1.02);
+}
+.button:hover::before {
+	transform: translateX(100%);
 }
 
 .button--primary,
@@ -25,7 +48,10 @@
 	color: #241a3a;
 }
 .button--primary {
-	box-shadow: 0 6px 16px rgba(201, 166, 255, 0.2);
+	box-shadow: 0 16px 34px rgba(201, 166, 255, 0.22);
+}
+.button--primary:hover {
+	box-shadow: 0 20px 44px rgba(201, 166, 255, 0.3);
 }
 
 .button--secondary {
@@ -88,9 +114,65 @@
 		);
 	border: 1px solid rgba(211, 194, 255, 0.12);
 	border-radius: var(--radius-lg);
-	box-shadow: 0 10px 28px rgba(3, 0, 12, 0.45);
+	box-shadow:
+		0 24px 80px rgba(3, 0, 12, 0.5),
+		inset 0 1px 0 rgba(255, 255, 255, 0.08);
 	isolation: isolate;
-	transition: border-color 0.2s;
+}
+
+.glassCard::before {
+	content: "";
+	position: absolute;
+	inset: 1px;
+	pointer-events: none;
+	border-radius: calc(var(--radius-lg) - 1px);
+	background: linear-gradient(
+		120deg,
+		rgba(255, 255, 255, 0.08),
+		transparent 42%
+	);
+	opacity: 0.75;
+}
+
+/* Wrapper around every card. The hover lift, the hover border and the
+   pulsing glow all live here as transform and opacity changes, so the card
+   itself is never repainted for them. */
+.glassWrap {
+	position: relative;
+	--card-radius: var(--radius-lg);
+	transition: transform 0.35s;
+}
+
+.glassWrap::before,
+.glassWrap::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	pointer-events: none;
+	border-radius: var(--card-radius);
+	opacity: 0;
+}
+
+/* Border colour the card takes on hover, faded in over the resting border. */
+.glassWrap::before {
+	border: 1px solid rgba(145, 104, 255, 0.58);
+	transition: opacity 0.35s;
+}
+
+/* Pulsing glow. It is only a shadow outside the card, so it can sit above
+   the page content instead of being interleaved with it. */
+.glassWrap::after {
+	box-shadow: 0 0 42px rgba(151, 88, 255, 0.14);
+	animation: borderGlow 7s steps(7) infinite;
+}
+
+.glassWrap:hover {
+	transform: perspective(900px) translateY(-8px) rotateX(1.2deg)
+		rotateY(-1.2deg);
+}
+.glassWrap:hover::before {
+	opacity: 1;
 }
 
 /* Shared decorative orb used by multiple card types to keep styles DRY */
@@ -107,10 +189,12 @@
     rgba(143, 77, 255, 0.18),
     transparent 68%
   );
+  transition: transform 0.5s, opacity 0.5s;
 }
 
-.glassCard:hover {
-	border-color: rgba(145, 104, 255, 0.58);
+.glassCard:hover .accentOrb {
+  opacity: 0.9;
+  transform: scale(1.35) translate(-10px, 10px);
 }
 
 .iconList {
@@ -135,9 +219,10 @@
 	border: 1px solid rgba(218, 190, 255, 0.18);
 
 	transition:
-		transform 0.2s,
-		background-color 0.2s,
-		border-color 0.2s;
+		transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+		background-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+		border-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+		box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 	position: relative;
 }
 
@@ -146,12 +231,21 @@
 	height: 100%;
 	object-fit: contain;
 	filter: invert(100%);
+	transition: transform 0.3s ease;
 }
 
 .chipSkillIcon:hover {
 	background: rgba(201, 166, 255, 0.14);
 	border-color: rgba(201, 166, 255, 0.6);
-	transform: translateY(-3px);
+	transform: translateY(-5px);
+
+	box-shadow:
+		0 8px 16px rgba(201, 166, 255, 0.2),
+		0 0 12px rgba(201, 166, 255, 0.1) inset;
+}
+
+.chipSkillIcon:hover img {
+	transform: scale(1.15);
 }
 .chipSkillIcon::after {
 	content: attr(data-tooltip);
@@ -161,6 +255,7 @@
 	transform: translateX(-50%) translateY(10px);
 
 	background-color: #171124;
+	box-shadow: 0 1px 10px rgba(201, 166, 255, 0.4);
 	font-weight: 600;
 	letter-spacing: 0.5px;
 
@@ -175,9 +270,9 @@
 	visibility: hidden;
 	pointer-events: none;
 	transition:
-		opacity 0.2s,
-		transform 0.2s,
-		visibility 0.2s;
+		opacity 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+		transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+		visibility 0.3s;
 }
 
 .chipSkillIcon:hover::after {
@@ -203,25 +298,72 @@
 	color: var(--cream);
 	font-size: 0.82rem;
 	font-weight: 600;
+	cursor: default;
 	transition:
-		background-color 0.2s,
-		border-color 0.2s;
+		transform 0.25s,
+		background-color 0.25s,
+		border-color 0.25s,
+		box-shadow 0.25s;
 }
 .chip:hover {
 	background: rgba(201, 166, 255, 0.14);
 	border-color: rgba(201, 166, 255, 0.42);
+	transform: translateY(-3px);
+	box-shadow: 0 6px 12px rgba(201, 166, 255, 0.18);
 }
 
-/* --dot-size is the diameter in px, unitless. */
+/* Pulsing dot. --dot-size is the diameter in px, unitless; --dot-steps is
+   half the period in tenths of a second (see the note on idle animations). */
 .chipDot {
 	--dot-size: 6;
+	--dot-period: 2.8s;
+	--dot-steps: 14;
 }
 
 .chipDot,
 .statusDot {
+	position: relative;
 	flex-shrink: 0;
 	width: calc(var(--dot-size) * 1px);
 	height: calc(var(--dot-size) * 1px);
 	border-radius: 50%;
 	background: var(--accent);
+	box-shadow: 0 0 18px var(--accent);
+}
+
+/* The ring that grows out of the dot while it fades. Same colour as the dot,
+   so it can sit on top of it. */
+.chipDot::before,
+.statusDot::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	border-radius: 50%;
+	pointer-events: none;
+	background: rgba(201, 166, 255, 0.55);
+	animation: dotRing var(--dot-period) steps(var(--dot-steps)) infinite;
+}
+
+/* Idle animations
+
+   The CSS animations that loop forever (the card glow, the dot rings, the
+   hero orbs and the typing cursor) are quantised with steps() to a shared
+   0.1s tick: every duration is a multiple of 0.1s and every step lands on a
+   multiple of it. They all start with the page, so their steps coincide and
+   the browser composites about ten frames a second while nothing else is
+   moving, instead of sixty. Keep new looping animations on that tick. The
+   background grid is stepped from GridBackdrop.jsx for the same reason. */
+@keyframes borderGlow {
+	50% {
+		opacity: 1;
+	}
+}
+
+/* Grows the ring 8px past the dot while it fades out. */
+@keyframes dotRing {
+	50% {
+		transform: scale(calc((var(--dot-size) + 16) / var(--dot-size)));
+		opacity: 0;
+	}
 }

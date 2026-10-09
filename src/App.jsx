@@ -1,10 +1,11 @@
 // Using automatic JSX runtime — no explicit React import required
 import './app.css'
-import { Header, Hero, Skills, Projects, Contact, Footer } from './components'
+import { GridBackdrop, Header, Hero, Skills, Projects, Contact, Footer } from './components'
 
 function App() {
 	return (
 		<div className="appShell">
+			<GridBackdrop />
 			<Header />
 			<main>
 				<Hero />

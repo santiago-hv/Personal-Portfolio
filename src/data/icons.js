@@ -4,11 +4,13 @@ import gmailIcon from "../assets/svg/gmail-svgrepo-com.svg";
 import ubicationIcon from "../assets/svg/location-pin-alt-1-svgrepo-com.svg";
 import downloadIcon from "../assets/svg/document-download-svgrepo-com.svg";
 import whatsappIcon from "../assets/svg/whatsapp-svgrepo-com.svg";
+import externalLinkIcon from "../assets/svg/external-link.svg";
 export {
   githubIcon,
   linkedinIcon,
   gmailIcon,
   ubicationIcon,
   downloadIcon,
-  whatsappIcon
+  whatsappIcon,
+  externalLinkIcon
 };

@@ -2,6 +2,7 @@ import { ChipList, GlassCard, SectionIntro } from "./UI";
 import { CardHeader } from "./CardHeader";
 import { revealDelay, useInView } from "../utils/animations";
 import { projects } from "../data/portfolio";
+import { externalLinkIcon, githubIcon } from "../data/icons";
 
 export function Projects() {
 	const [sectionRef, inView] = useInView();
@@ -21,8 +22,8 @@ export function Projects() {
 				{projects.map((project, index) => (
 					<div
 						key={project.title}
-						className="reveal"
-						style={revealDelay(index + 1)}
+						className="reveal reveal--item glassWrap"
+						style={revealDelay(index, 0.35)}
 					>
 						<GlassCard className={`cardItem ${project.image ? "projectCard" : ""}`}>
 							{project.image ? (
@@ -50,13 +51,25 @@ export function Projects() {
 								{project.demoUrl || project.repoUrl ? (
 									<div className="projectLinks">
 										{project.demoUrl ? (
-											<a href={project.demoUrl} target="_blank" rel="noreferrer">
-												Live Demo
+											<a
+												href={project.demoUrl}
+												target="_blank"
+												rel="noreferrer"
+												aria-label={`${project.title} live demo`}
+												title="Live demo"
+											>
+												<img className="icon" src={externalLinkIcon} alt="" />
 											</a>
 										) : null}
 										{project.repoUrl ? (
-											<a href={project.repoUrl} target="_blank" rel="noreferrer">
-												GitHub Repo
+											<a
+												href={project.repoUrl}
+												target="_blank"
+												rel="noreferrer"
+												aria-label={`${project.title} GitHub repository`}
+												title="GitHub repository"
+											>
+												<img className="icon" src={githubIcon} alt="" />
 											</a>
 										) : null}
 									</div>

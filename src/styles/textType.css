@@ -1,10 +1,14 @@
 .text-type {
   display: inline-block;
+  position: relative;
   white-space: pre-wrap;
 }
 
+/* Out of flow, so it follows the typed text without affecting line breaks. */
 .text-type__cursor {
-  animation: cursorBlink 1s steps(1) infinite;
+  position: absolute;
+  margin-left: 0.25rem;
+  animation: cursorBlink 0.5s steps(5, jump-none) infinite alternate;
 }
 
 .text-type__rest {
@@ -12,7 +16,7 @@
 }
 
 @keyframes cursorBlink {
-  50% {
+  to {
     opacity: 0;
   }
 }

@@ -16,7 +16,9 @@
 	}
 	.personalImg{
 		min-height: auto;
-		max-height: 400px;
+	}
+	.heroProfile {
+		--photo-max-height: 400px;
 	}
 }
 
@@ -33,9 +35,8 @@
 		line-height: 1.5;
 	}
 
-	.personalImg {
-		min-height: auto;
-		max-height: 500px;
+	.heroProfile {
+		--photo-max-height: 500px;
 	}
 
 	.cardsGrid {
@@ -124,12 +125,16 @@
 		border-radius: 24px;
 	}
 
+	.glassWrap {
+		--card-radius: 24px;
+	}
+
 	.profileStatus {
+		--frost-x: 12px;
+		--frost-y: 12px;
 		align-items: flex-start;
 		padding: 12px;
-		left: 12px;
 		right: 12px;
-		bottom: 12px;
 	}
 
 	.statusDot {
@@ -137,14 +142,15 @@
 	}
 
 	.socialDock {
+		--dock-size: 36px;
+		--dock-gap: 8px;
 		top: 16px;
 		right: 16px;
-		gap: 8px;
 	}
 
 	.socialDock a {
-		width: 36px;
-		height: 36px;
+		--frost-edge: top;
+		--frost-y: 16px;
 		border-radius: 12px;
 	}
 
@@ -223,6 +229,10 @@
 	.cardItem {
 		padding: 16px;
 		border-radius: 20px;
+	}
+
+	.glassWrap:not(.glassWrap--contact) {
+		--card-radius: 20px;
 	}
 
 	.chip {

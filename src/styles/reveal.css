@@ -1,18 +1,71 @@
-/* Entrance animation. An element with .reveal stays hidden until an ancestor
-   gets .is-visible; --reveal-delay staggers siblings. Opacity and transform
-   only, so it stays on the compositor. */
+/* Entrance animations. An element with .reveal stays hidden until an ancestor
+   gets .is-visible; --reveal-delay staggers siblings. The movement is opacity
+   and transform only, so it runs on the compositor and stays smooth even
+   while the page is still loading. */
 .reveal {
 	opacity: 0;
 }
 
 .is-visible .reveal {
 	opacity: 1;
-	animation: reveal 0.35s ease-out var(--reveal-delay, 0s) backwards;
+	animation: var(--reveal-name) var(--reveal-duration)
+		cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0s) backwards;
 }
 
-@keyframes reveal {
+/* The cards and section intros also start out of focus. The blur is its own,
+   much shorter animation: with this easing it is all but gone after the first
+   40% of the movement, and ending it there frees the GPU from blurring a
+   card-sized surface for the rest of the entrance. Delete this rule to drop
+   the blur altogether. */
+.is-visible .reveal--item,
+.is-visible .reveal--intro {
+	animation:
+		var(--reveal-name) var(--reveal-duration) cubic-bezier(0.16, 1, 0.3, 1)
+			var(--reveal-delay, 0s) backwards,
+		revealBlur calc(var(--reveal-duration) * 0.4) ease-out
+			var(--reveal-delay, 0s) backwards;
+}
+
+.reveal--item {
+	--reveal-name: revealItem;
+	--reveal-duration: 0.7s;
+	--reveal-blur: 10px;
+}
+
+.reveal--intro {
+	--reveal-name: revealIntro;
+	--reveal-duration: 0.9s;
+	--reveal-blur: 12px;
+}
+
+.reveal--title {
+	--reveal-name: revealTitle;
+	--reveal-duration: 0.8s;
+}
+
+@keyframes revealItem {
 	from {
 		opacity: 0;
-		transform: translateY(14px);
+		transform: translateY(60px) scale(0.9);
+	}
+}
+
+@keyframes revealIntro {
+	from {
+		opacity: 0;
+		transform: translateY(80px) scale(0.95);
+	}
+}
+
+@keyframes revealTitle {
+	from {
+		opacity: 0;
+		transform: scale(1.3);
+	}
+}
+
+@keyframes revealBlur {
+	from {
+		filter: blur(var(--reveal-blur));
 	}
 }

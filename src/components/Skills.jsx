@@ -20,8 +20,8 @@ export function Skills() {
 				{skills.map((skill, index) => (
 					<div
 						key={skill.title}
-						className="reveal"
-						style={revealDelay(index + 1)}
+						className="reveal reveal--item glassWrap"
+						style={revealDelay(index, 0.35)}
 					>
                         <GlassCard className="cardItem">
                             <CardHeader icon={skill.icon} title={skill.title} />

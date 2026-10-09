@@ -1,3 +1,4 @@
+export { GridBackdrop } from './GridBackdrop';
 export { Header } from './Header';
 export { Hero } from './Hero';
 export { Skills } from './Skills';

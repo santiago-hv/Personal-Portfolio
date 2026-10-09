@@ -59,12 +59,16 @@
 	width: 100%;
 	height: 100%;
 	min-height: 394px;
+	max-height: var(--photo-max-height, none);
 	border-radius: var(--radius-lg);
 	object-fit: cover;
 	aspect-ratio: 3/4;
 }
 
 .profileStatus {
+	--frost-x: 20px;
+	--frost-y: 20px;
+	--frost-tint: rgba(67, 61, 82, 0.84);
 	display: flex;
 	align-items: center;
 	gap: 12px;
@@ -72,12 +76,12 @@
 	max-width: calc(100% - 40px);
 	padding: 15px 18px;
 	border-radius: 24px;
-	background: rgba(48, 43, 62, 0.94);
+	background: rgba(58, 53, 72, 0.96);
 	border: 1px solid rgba(211, 194, 255, 0.16);
 	position: absolute;
-	left: 20px;
+	left: var(--frost-x);
 	right: 20px;
-	bottom: 20px;
+	bottom: var(--frost-y);
 	z-index: 2;
 }
 
@@ -93,15 +97,26 @@
 
 .statusDot {
 	--dot-size: 8;
+	--dot-period: 2.2s;
+	--dot-steps: 11;
 }
 
 .heroProfile {
 	position: relative;
+	container-type: inline-size;
+	/* How much object-fit crops off the top and off the bottom of the photo
+	   once --photo-max-height caps its height. */
+	--photo-crop: max(
+		0px,
+		(100cqw * 4 / 3 - var(--photo-max-height, 100000px)) / 2
+	);
 }
 
 .socialDock {
+	--dock-size: 50px;
+	--dock-gap: 10px;
 	display: flex;
-	gap: 10px;
+	gap: var(--dock-gap);
 	position: absolute;
 	left: 20px;
 	right: 20px;
@@ -110,18 +125,57 @@
 }
 
 .socialDock a {
+	--frost-x: calc(20px + var(--i, 0) * (var(--dock-size) + var(--dock-gap)));
+	--frost-y: 100px;
+	--frost-tint: rgba(201, 166, 255, 0.12);
 	display: grid;
 	place-items: center;
-	width: 50px;
-	height: 50px;
+	width: var(--dock-size);
+	height: var(--dock-size);
 	border-radius: 16px;
-	background: rgba(48, 43, 62, 0.9);
+	background: rgba(62, 56, 74, 0.9);
 	border: 1px solid rgba(211, 194, 255, 0.18);
-	transition: transform 0.2s;
+	transition:
+		transform 0.25s,
+		--frost-tint 0.25s;
+}
+.socialDock a:nth-child(2) {
+	--i: 1;
+}
+.socialDock a:nth-child(3) {
+	--i: 2;
 }
 
 .socialDock a:hover {
-	transform: translateY(-3px);
+	--frost-tint: rgba(201, 166, 255, 0.22);
+	transform: translateY(-4px) rotate(4deg);
+}
+
+/* Frosted glass without backdrop-filter. The panels over the photo each paint
+   their own slice of a 40px-wide, pre-blurred copy of it, stretched to the
+   photo's width and lined up with the real photo behind them, under their
+   tint. --frost-x and --frost-y are a panel's offsets from the photo's left
+   edge and from its --frost-edge; the extra 1px is the panel's border. */
+@property --frost-tint {
+	syntax: "<color>";
+	inherits: false;
+	initial-value: transparent;
+}
+
+@supports (width: 1cqw) {
+	.profileStatus,
+	.socialDock a {
+		background:
+			linear-gradient(var(--frost-tint), var(--frost-tint)),
+			url("../assets/profile-blur.webp") no-repeat;
+		background-size:
+			auto,
+			100cqw auto;
+		background-position:
+			0 0,
+			left calc(-1px - var(--frost-x)) var(--frost-edge, bottom)
+				calc(-1px - var(--frost-y) - var(--photo-crop));
+	}
 }
 .socialDock img {
 	width: 30px;
@@ -146,6 +200,9 @@
 		rgba(143, 77, 255, 0.26),
 		transparent 70%
 	);
+	animation:
+		softFloat 9s steps(3) infinite,
+		orbFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
 }
 
 .orb--two {
@@ -158,6 +215,47 @@
 		rgba(108, 99, 255, 0.22),
 		transparent 70%
 	);
+	animation:
+		softFloat 12s steps(4) infinite reverse,
+		orbFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+/* The orbs fade in with the hero. They are the only part of it that is not
+   inside a card, so fading them directly avoids animating the whole section
+   as one big group on top of the cards' own entrances. */
+@keyframes orbFade {
+	from {
+		opacity: 0;
+	}
+}
+
+/* An ease-in-out float, sampled every tenth of the way so each stretch can be
+   stepped on the shared tick. The orbs are soft and move a few pixels a
+   second, so they only need a new position every 0.3s. */
+@keyframes softFloat {
+	0%,
+	100% {
+		transform: translate3d(0, 0, 0);
+	}
+	10%,
+	90% {
+		transform: translate3d(1px, -1.3px, 0);
+	}
+	20%,
+	80% {
+		transform: translate3d(4px, -5.3px, 0);
+	}
+	30%,
+	70% {
+		transform: translate3d(8px, -10.7px, 0);
+	}
+	40%,
+	60% {
+		transform: translate3d(11px, -14.7px, 0);
+	}
+	50% {
+		transform: translate3d(12px, -16px, 0);
+	}
 }
 
 .cvButton {

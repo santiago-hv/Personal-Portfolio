@@ -1,3 +1,5 @@
+import { revealDelay } from "../utils/animations";
+
 export function GlassCard({ children, className = "", as: Tag = "article" }) {
     // Render a decorative orb element for shared styling. Keeping layout
     // and visuals identical while consolidating styles into ui.css.
@@ -36,9 +38,9 @@ export function IconList({ icons, className = "", tags }) {
 
 export function SectionIntro({ eyebrow, title, text }) {
     return (
-        <div className="sectionIntro reveal">
+        <div className="sectionIntro reveal reveal--intro" style={revealDelay()}>
             <p className="eyebrow">{eyebrow}</p>
-            <h2>{title}</h2>
+            <h2 className="reveal reveal--title" style={revealDelay()}>{title}</h2>
             {text ? <p className="sectionText">{text}</p> : null}
         </div>
     );

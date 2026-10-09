@@ -1,6 +1,7 @@
 import profileImage from "../assets/profile.webp";
 import { githubIcon, linkedinIcon, downloadIcon,whatsappIcon } from "../data/icons";
 import { GlassCard } from "./UI";
+import { revealDelay } from "../utils/animations";
 import { scrollToHashFromEvent } from "../utils/scrollTo";
 import TextType from "./TextType";
 
@@ -10,17 +11,19 @@ export function Hero() {
     const handleHeroClick = scrollToHashFromEvent;
 
 	return (
-		<section id="home" className="heroSection">
+		<section id="home" className="heroSection is-visible">
 			<div className="orb orb--one" />
 			<div className="orb orb--two" />
 			<div className="heroGrid">
-				<div>
+				<div className="reveal reveal--item glassWrap" style={revealDelay(0)}>
 					<GlassCard className="heroCard heroCard--main">
 						<span className="eyebrow">FULLSTACK DEVELOPER</span>
 						<TextType
 							text="< Hi, I'm Santiago Villegas />"
 							as="h1"
 							typingSpeed={50}
+							pauseDuration={5000}
+							deletingSpeed={40}
 						/>
 						<p>
 							Full-stack engineering student specializing in the modern
@@ -56,7 +59,7 @@ export function Hero() {
 					</GlassCard>
 				</div>
 
-				<div className="heroProfile">
+				<div className="reveal reveal--item heroProfile" style={revealDelay(1)}>
 					<img
 						className="personalImg"
 						src={profileImage}
