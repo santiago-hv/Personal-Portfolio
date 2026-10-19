@@ -5,7 +5,16 @@ import { revealDelay } from "../utils/animations";
 import { scrollToHashFromEvent } from "../utils/scrollTo";
 import TextType from "./TextType";
 
-const cvUrl = `${import.meta.env.BASE_URL}CV_Santiago_Huapalla_Villegas.pdf`;
+const cvFileName = "CV_Santiago_Huapalla_Villegas.pdf";
+const cvUrl = `${import.meta.env.BASE_URL}${cvFileName}`;
+
+// The link itself opens the CV in a new tab; this also triggers the download.
+function downloadCv() {
+	const link = document.createElement("a");
+	link.href = cvUrl;
+	link.download = cvFileName;
+	link.click();
+}
 
 export function Hero() {
     const handleHeroClick = scrollToHashFromEvent;
@@ -49,7 +58,7 @@ export function Hero() {
 							<a
 								className="button button--secondary cvButton"
 								href={cvUrl}
-								download="CV_Santiago_Huapalla_Villegas.pdf"
+								onClick={downloadCv}
 								target="_blank"
 								rel="noopener noreferrer"
 							>
@@ -65,8 +74,8 @@ export function Hero() {
 						className="personalImg"
 						src={profileImage}
 						alt="Santiago Villegas"
-						width={709}
-						height={945}
+						width={682}
+						height={909}
 						fetchpriority="high"
 						decoding="async"
 					/>
