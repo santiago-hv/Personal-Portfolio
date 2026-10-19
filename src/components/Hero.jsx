@@ -8,7 +8,6 @@ import TextType from "./TextType";
 const cvFileName = "CV_Santiago_Huapalla_Villegas.pdf";
 const cvUrl = `${import.meta.env.BASE_URL}${cvFileName}`;
 
-// The link itself opens the CV in a new tab; this also triggers the download.
 function downloadCv() {
 	const link = document.createElement("a");
 	link.href = cvUrl;
