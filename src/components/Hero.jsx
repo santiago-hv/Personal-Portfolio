@@ -5,7 +5,7 @@ import { revealDelay } from "../utils/animations";
 import { scrollToHashFromEvent } from "../utils/scrollTo";
 import TextType from "./TextType";
 
-const cvUrl = `${import.meta.env.BASE_URL}CV_Santiago%20Vladimir%20Huapalla%20Villegas.pdf`;
+const cvUrl = `${import.meta.env.BASE_URL}CV_Santiago_Huapalla_Villegas.pdf`;
 
 export function Hero() {
     const handleHeroClick = scrollToHashFromEvent;
@@ -49,6 +49,7 @@ export function Hero() {
 							<a
 								className="button button--secondary cvButton"
 								href={cvUrl}
+								download="CV_Santiago_Huapalla_Villegas.pdf"
 								target="_blank"
 								rel="noopener noreferrer"
 							>
